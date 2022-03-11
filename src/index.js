@@ -6,6 +6,8 @@ import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./routes/Home";
 import Reps from "./routes/Reps";
+import RepsList from "./components/RepsList";
+import RepShow from "./components/RepShow";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -13,7 +15,10 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="reps" element={<Reps />} />
+          <Route path="reps" element={<Reps />}>
+            <Route index element={<RepsList />} />
+            <Route path=":id" element={<RepShow />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

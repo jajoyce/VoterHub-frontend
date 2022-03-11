@@ -17,3 +17,10 @@
 .nav-link {
   margin: 0 20px;
 }
+
+.rep-card {
+  margin: 10px;
+  background-color: #fef;
+  border: 2px solid #226;
+  border-radius: 10px;
+}
