@@ -4,14 +4,19 @@
   background-color: #eef;
 }
 
-.navbar {
-  background-color: #226;
+.header-logo {
+  width: 40px;
+  height: auto;
+  margin-right: 20px;
+  display: inline-block;
 }
 
-.nav-home {
-  text-decoration: none;
-  padding-left: 20px;
-  padding-right: 20px;
+.header-home-text {
+  display: inline-block;
+}
+
+.navbar {
+  background-color: #226;
 }
 
 .nav-link {

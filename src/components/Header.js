@@ -10,7 +10,8 @@ function Header() {
     <Navbar expand="md" variant="dark" sticky="top">
       <Container fluid className="mx-3">
         <Navbar.Brand as={NavLink} to="/">
-          VoterHub
+          <img src="https://i.imgur.com/ydNZ1JK.png" className="header-logo"/>
+          <div className="header-home-text">VoterHub</div>
         </Navbar.Brand>
         <Nav>
           <Navbar.Toggle aria-controls="navbar-nav" />
