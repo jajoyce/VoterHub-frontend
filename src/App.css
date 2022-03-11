@@ -23,10 +23,19 @@
   margin: 0 20px;
 }
 
+.search-bar {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.search-label {
+  background-color: #f8f4ff;
+}
+
 .rep-card {
   margin: 10px;
   padding: 16px;
-  background-color: #fef;
+  background-color: #f0e8ff;
   border: 2px solid #226;
   border-radius: 10px;
   cursor: pointer;

@@ -1,9 +1,18 @@
 import Container from "react-bootstrap/Container";
+import AddressSearch from "../components/AddressSearch";
 
 function Home() {
   return (
-    <Container className="my-5">
-      <h1>Home Route</h1>
+    <Container className="mt-4 mb-5">
+      <h1>VoterHub</h1>
+      <h3>
+        Stay informed on <em>your</em> government.
+      </h3>
+      <AddressSearch />
+      <h4>
+        Just enter your address to view: <br /> your elected officials at every level of
+        government, <br /> your polling location, upcoming elections, {" "}
+      </h4>
     </Container>
   );
 }
