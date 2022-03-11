@@ -6,12 +6,12 @@ import RepShow from "../components/RepShow";
 
 function Reps() {
   const [backendURL, address, setAddress] = useOutletContext();
-  const repsURL = backendURL + "/reps";
-  console.log(repsURL);
+  const fetchRepsURL = backendURL + "/civicAPI/reps/" + address;
+  console.log(fetchRepsURL);
   const [repsData, setRepsData] = useState(null);
 
   const getRepsData = async () => {
-    const response = await fetch(repsURL);
+    const response = await fetch(fetchRepsURL);
     const data = await response.json();
     console.log(data);
     setRepsData(data);
