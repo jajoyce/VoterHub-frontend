@@ -1,35 +1,34 @@
 import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
+import { NavLink, Link } from "react-router-dom";
+// import { LinkContainer } from "react-router-bootstrap";
 
 function Header() {
   return (
-    <Navbar expand="md" className="navbar-dark text-light">
-      <Container>
-        <Link to="/" className="nav-home">
-          <Navbar.Brand>VoterHub</Navbar.Brand>
-        </Link>
-        <Navbar.Toggle aria-controls="navbar-nav" />
-        <Navbar.Collapse id="navbar-nav">
-          <Nav>
-            <LinkContainer to="/reps">
-              <Nav.Link>Who Represents Me</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/info" className="me-auto">
-              <Nav.Link>My Voter Info</Nav.Link>
-            </LinkContainer>
+    <Navbar expand="md" variant="dark" sticky="top">
+      <Container fluid className="mx-3">
+        <Navbar.Brand as={NavLink} to="/">
+          VoterHub
+        </Navbar.Brand>
+        <Nav>
+          <Navbar.Toggle aria-controls="navbar-nav" />
+          <Navbar.Collapse id="navbar-nav">
+            <Nav.Link as={NavLink} to="/reps">
+              Who Represents Me
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/info">
+              My Voter Info
+            </Nav.Link>
             <NavDropdown
               title="Welcome, Voter"
               id="nav-dropdown"
-              className="ms-auto"
             >
               <NavDropdown.Item>My Account</NavDropdown.Item>
               <NavDropdown.Item>Settings</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item>Sign Out</NavDropdown.Item>
             </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
+          </Navbar.Collapse>
+        </Nav>
       </Container>
     </Navbar>
   );
