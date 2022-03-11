@@ -23,9 +23,13 @@ function Reps() {
     let repsArray = [];
     for (const office of data.offices) {
       for (const officialIndex of office.officialIndices) {
+        if (!repsData.officials[officialIndex].photoUrl) {
+          repsData.officials[officialIndex].photoUrl = "https://images.vexels.com/media/users/3/129616/isolated/preview/fb517f8913bd99cd48ef00facb4a67c0-businessman-avatar-silhouette-by-vexels.png"
+        }
         repsArray.push({
           ...repsData.officials[officialIndex],
           office: office.name,
+          index: officialIndex
         });
       }
     }

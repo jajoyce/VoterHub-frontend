@@ -20,7 +20,30 @@
 
 .rep-card {
   margin: 10px;
+  padding: 16px;
   background-color: #fef;
   border: 2px solid #226;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.card {
+  flex-direction: row;
+  margin: 15px auto;
+}
+
+.rep-card-img {
+  width: 25%;
+  height: auto;
+  max-height: 350px;
+  object-fit: cover;
+}
+
+.blue-button {
+  background-color: #55b;
+}
+
+.card-body {
+  margin-left: 20px;
+  text-align: left;
 }

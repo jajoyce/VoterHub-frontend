@@ -4,7 +4,7 @@ import RepCard from "./RepCard";
 function RepsList() {
     const reps = useOutletContext();
     return reps.map((rep) => (
-      <RepCard repre={rep} />
+      <RepCard rep={rep} />
     ));
 }
 
