@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router";
+import Container from "react-bootstrap/Container";
 
 function Reps() {
-  const repsURL = useOutletContext() + "/reps";
+  const [backendURL, address, setAddress] = useOutletContext();
+  const repsURL = backendURL + "/reps";
   console.log(repsURL);
   const [repsData, setRepsData] = useState(null);
 
@@ -40,7 +42,13 @@ function Reps() {
     ));
   };
 
-  return repsData ? loaded() : <h1>Loading...</h1>;
+  return (
+    <Container className="my-4">
+      <h1>Your Elected Representatives</h1>
+      <h3>at: {address}</h3>
+      {repsData ? loaded() : <h1>Loading...</h1>}
+    </Container>
+  );
 }
 
 export default Reps;
