@@ -16,10 +16,10 @@ function Header() {
         <Nav>
           <Navbar.Toggle aria-controls="navbar-nav" />
           <Navbar.Collapse id="navbar-nav">
-            <Nav.Link as={NavLink} to="/reps">
+            <Nav.Link as={NavLink} to="/representatives">
               Who Represents Me
             </Nav.Link>
-            <Nav.Link as={NavLink} to="/info">
+            <Nav.Link as={NavLink} to="/voter-info">
               My Voter Info
             </Nav.Link>
             <NavDropdown

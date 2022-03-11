@@ -32,6 +32,10 @@
   background-color: #f8f4ff;
 }
 
+.blue-button {
+  background-color: #55b;
+}
+
 .rep-card {
   margin: 10px;
   padding: 16px;
@@ -39,9 +43,6 @@
   border: 2px solid #226;
   border-radius: 10px;
   cursor: pointer;
-}
-
-.card {
   flex-direction: row;
   margin: 15px auto;
 }
@@ -53,11 +54,14 @@
   object-fit: cover;
 }
 
-.blue-button {
-  background-color: #55b;
-}
-
 .card-body {
   margin-left: 20px;
   text-align: left;
+}
+
+.voter-info-card {
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 80%;
+  background-color: #f4f4ff;
 }

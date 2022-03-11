@@ -6,6 +6,7 @@ import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./routes/Home";
 import Reps from "./routes/Reps";
+import VoterInfo from "./routes/VoterInfo";
 import RepsList from "./components/RepsList";
 import RepShow from "./components/RepShow";
 
@@ -15,10 +16,11 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="reps" element={<Reps />}>
+          <Route path="representatives" element={<Reps />}>
             <Route index element={<RepsList />} />
             <Route path=":id" element={<RepShow />} />
           </Route>
+          <Route path="voter-info" element={<VoterInfo />} />
         </Route>
       </Routes>
     </BrowserRouter>
