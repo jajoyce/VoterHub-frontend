@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./routes/Home";
 import Reps from "./routes/Reps";
 import VoterInfo from "./routes/VoterInfo";
+import SignUp from "./routes/SignUp";
+import SignIn from "./routes/SignIn";
 import RepsList from "./components/RepsList";
 import RepShow from "./components/RepShow";
 
@@ -21,6 +23,8 @@ ReactDOM.render(
             <Route path=":id" element={<RepShow />} />
           </Route>
           <Route path="voter-info" element={<VoterInfo />} />
+          <Route path="sign-up" element={<SignUp />} />
+          <Route path="sign-in" element={<SignIn />} />
         </Route>
       </Routes>
     </BrowserRouter>

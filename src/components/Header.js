@@ -26,6 +26,8 @@ function Header() {
               title="Welcome, Voter"
               id="nav-dropdown"
             >
+              <NavDropdown.Item as={NavLink} to="/sign-up">Sign Up</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="/sign-in">Sign In</NavDropdown.Item>
               <NavDropdown.Item>My Account</NavDropdown.Item>
               <NavDropdown.Item>Settings</NavDropdown.Item>
               <NavDropdown.Divider />
