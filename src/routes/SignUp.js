@@ -27,7 +27,6 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (UserAuth.register(form)) {
       console.log("SIGNED UP");
       navigate("/representatives");
