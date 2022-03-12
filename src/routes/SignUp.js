@@ -28,11 +28,12 @@ function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (UserAuth.signUp(form)) {
+    if (UserAuth.register(form)) {
       console.log("SIGNED UP");
       navigate("/representatives");
     } else {
       console.log("SIGNUP FAILED");
+      navigate("/");
     }
   };
 
@@ -91,7 +92,9 @@ function SignUp() {
           />
         </FloatingLabel>
         <Form.Group className="my-3">
-          <Form.Label>Are you registered to vote? &nbsp; &nbsp; &nbsp; </Form.Label>
+          <Form.Label>
+            Are you registered to vote? &nbsp; &nbsp; &nbsp;{" "}
+          </Form.Label>
           <Form.Check
             type="radio"
             name="registeredVoter"
@@ -110,7 +113,9 @@ function SignUp() {
           />
           <Form.Text>(Dont't worry, we can help with that!)</Form.Text>
         </Form.Group>
-        <Button type="submit" className="my-3">Sign Up</Button>
+        <Button type="submit" className="my-3">
+          Sign Up
+        </Button>
       </Form>
     </Container>
   );
