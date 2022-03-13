@@ -44,7 +44,7 @@ a:hover {
 }
 
 .navbar {
-  background-color: #226;
+  background-color: #115;
 }
 
 .nav-link {
@@ -125,4 +125,12 @@ a:hover {
   padding: 20px;
   max-width: 80%;
   background-color: #f8f6ff;
+}
+
+.signup-card, .signin-card {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #f4f4ff;
 }
