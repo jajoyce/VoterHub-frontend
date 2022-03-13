@@ -1,8 +1,13 @@
+import { Container } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
+
 function Footer() {
   return (
-    <nav>
-      <h2>Footer</h2>
-    </nav>
+    <Navbar className="footer">
+      <Container>
+        <h5 className="footer-text">Government of the people, by the people, and for the people.</h5>
+      </Container>
+    </Navbar>
   );
 }
 

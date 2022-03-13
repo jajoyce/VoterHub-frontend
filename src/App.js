@@ -17,7 +17,10 @@ function App() {
     <div className="App">
       <RecoilRoot>
         <Header userState={userState} />
-        <Outlet context={{ userState, serverURL, address, setAddress }} />
+        <Outlet
+          context={{ userState, serverURL, address, setAddress }}
+          className="full-height"
+        />
         <Footer />
       </RecoilRoot>
     </div>

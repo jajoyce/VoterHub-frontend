@@ -13,7 +13,6 @@ function AddressSearch(props) {
 
   const handleChange = (e) => {
     setSearchAddress(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleSubmit = (e) => {

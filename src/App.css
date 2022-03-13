@@ -4,6 +4,10 @@
   background-color: #eef;
 }
 
+.full-height {
+  min-height: calc(100vh - 156px);
+}
+
 a {
   color: #22d;
 }
@@ -19,6 +23,22 @@ a:hover {
   display: inline-block;
 }
 
+.home-card {
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 500px;
+  background-color: #fbfbff;
+}
+
+.home-list {
+  list-style-type: none;
+  font-size: 18px;
+}
+
+.home-list li {
+  margin-top: 10px;
+}
+
 .header-home-text {
   display: inline-block;
 }
@@ -29,6 +49,17 @@ a:hover {
 
 .nav-link {
   margin: 0 20px;
+}
+
+.footer {
+  height: 66px;
+  color: #eef;
+  text-align: center;
+}
+
+.footer-text {
+  text-align: center;
+  margin: 0 auto;
 }
 
 .search-bar {

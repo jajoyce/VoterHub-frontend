@@ -21,7 +21,6 @@ function SignIn() {
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
 
   const handleSubmit = async (e) => {
