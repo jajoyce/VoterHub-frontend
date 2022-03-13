@@ -5,15 +5,18 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink, Link } from "react-router-dom";
 // import { LinkContainer } from "react-router-bootstrap";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 import { useRecoilState } from "recoil";
 import UserAuth from "../models/UserAuth";
 
 function Header(props) {
   const [user, setUser] = useRecoilState(props.userState);
+  const navigate = useNavigate();
 
   const logout = () => {
     setUser(null);
     localStorage.clear();
+    navigate("/")
   }
 
   useEffect(async () => {

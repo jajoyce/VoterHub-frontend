@@ -6,9 +6,12 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router";
+import { useRecoilState } from "recoil";
 import UserAuth from "../models/UserAuth";
 
 function SignUp() {
+  const { userState } = useOutletContext();
+  const [user, setUser] = useRecoilState(userState);
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -25,11 +28,19 @@ function SignUp() {
     console.log(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (UserAuth.register(form)) {
+    if (await UserAuth.register(form)) {
       console.log("SIGNED UP");
-      navigate("/representatives");
+      try {
+        const userData = await UserAuth.getUser();
+        console.log("USER DATA:::: ", userData);
+        setUser(userData);
+        navigate("/representatives");
+      } catch (err) {
+        console.log("Failed to fetch user data.", err);
+        setUser(null);
+      }
     } else {
       console.log("SIGNUP FAILED");
       navigate("/");

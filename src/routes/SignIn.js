@@ -6,9 +6,12 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router";
+import { useRecoilState } from "recoil";
 import UserAuth from "../models/UserAuth";
 
 function SignIn() {
+  const { userState } = useOutletContext();
+  const [user, setUser] = useRecoilState(userState);
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -21,11 +24,19 @@ function SignIn() {
     console.log(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (UserAuth.login(form)) {
+    if (await UserAuth.login(form)) {
       console.log("SIGNED IN");
-      navigate("/representatives");
+      try {
+        const userData = await UserAuth.getUser();
+        console.log("USER DATA:::: ", userData);
+        setUser(userData);
+        navigate("/representatives");
+      } catch (err) {
+        console.log("Failed to fetch user data.", err);
+        setUser(null);
+      }
     } else {
       console.log("LOGIN FAILED");
       navigate("/");
@@ -57,7 +68,7 @@ function SignIn() {
             required
           />
         </FloatingLabel>
-        
+
         <Button type="submit" className="my-3">
           Sign In
         </Button>

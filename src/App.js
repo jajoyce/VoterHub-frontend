@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       <RecoilRoot>
         <Header userState={userState} />
-        <Outlet context={{ serverURL, address, setAddress }} />
+        <Outlet context={{ userState, serverURL, address, setAddress }} />
         <Footer />
       </RecoilRoot>
     </div>
