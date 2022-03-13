@@ -5,8 +5,8 @@ import RepsList from "../components/RepsList";
 import RepShow from "../components/RepShow";
 
 function Reps() {
-  const [backendURL, address, setAddress] = useOutletContext();
-  const fetchRepsURL = backendURL + "/civicAPI/reps/" + address;
+  const { serverURL, address } = useOutletContext();
+  const fetchRepsURL = serverURL + "/civicAPI/reps/" + address;
   console.log(fetchRepsURL);
   const [repsData, setRepsData] = useState(null);
 
@@ -24,12 +24,13 @@ function Reps() {
     for (const office of data.offices) {
       for (const officialIndex of office.officialIndices) {
         if (!repsData.officials[officialIndex].photoUrl) {
-          repsData.officials[officialIndex].photoUrl = "https://images.vexels.com/media/users/3/129616/isolated/preview/fb517f8913bd99cd48ef00facb4a67c0-businessman-avatar-silhouette-by-vexels.png"
+          repsData.officials[officialIndex].photoUrl =
+            "https://images.vexels.com/media/users/3/129616/isolated/preview/fb517f8913bd99cd48ef00facb4a67c0-businessman-avatar-silhouette-by-vexels.png";
         }
         repsArray.push({
           ...repsData.officials[officialIndex],
           office: office.name,
-          index: officialIndex
+          index: officialIndex,
         });
       }
     }

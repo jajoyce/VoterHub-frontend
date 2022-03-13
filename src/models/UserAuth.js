@@ -22,7 +22,7 @@ class UserAuth {
         return false;
       }
     } catch (err) {
-      console.log("Registration failed: ", err);
+      console.log("Registration failed:", err);
     }
   };
 
@@ -47,7 +47,28 @@ class UserAuth {
         return false;
       }
     } catch (err) {
-      console.log("Login failed: ", err);
+      console.log("Login failed:", err);
+    }
+  };
+
+  static getUser = async () => {
+    try {
+      const res = await fetch(`${authURL}/user`, {
+        method: "GET",
+        headers: { jwToken: localStorage.jwToken },
+      });
+
+      if (res.status === 200) {
+        const parsedRes = await res.json();
+        console.log("Got user data.", parsedRes);
+        return parsedRes;
+      } else {
+        console.log("Error getting user data.");
+        return null;
+      }
+    } catch (err) {
+      console.log("Failed to get user data:", err);
+      return null;
     }
   };
 }

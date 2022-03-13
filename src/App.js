@@ -7,14 +7,15 @@ import { Outlet } from "react-router";
 import { useState } from "react";
 
 function App() {
-  const backendURL = "http://localhost:4000";
-
+  const serverURL = "http://localhost:4000";
   const [address, setAddress] = useState("123 Main St, Kansas City, MO 64105");
+  // const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
   return (
     <div className="App">
-      <Header />
-      <Outlet context={[backendURL, address, setAddress]} />
+      <Header props={{ user, setUser }} />
+      <Outlet context={{ serverURL, address, setAddress, user, setUser }} />
       <Footer />
     </div>
   );
