@@ -11,6 +11,11 @@ import UserAuth from "../models/UserAuth";
 function Header(props) {
   const [user, setUser] = useRecoilState(props.userState);
 
+  const logout = () => {
+    setUser(null);
+    localStorage.clear();
+  }
+
   useEffect(async () => {
     if (localStorage.getItem("jwToken")) {
       try {
@@ -52,7 +57,7 @@ function Header(props) {
               <NavDropdown.Item>My Account</NavDropdown.Item>
               <NavDropdown.Item>Settings</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item>Sign Out</NavDropdown.Item>
+              <NavDropdown.Item onClick={logout}>Sign Out</NavDropdown.Item>
             </NavDropdown>
           </Navbar.Collapse>
         </Nav>
