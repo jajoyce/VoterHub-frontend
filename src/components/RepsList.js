@@ -3,8 +3,8 @@ import RepCard from "./RepCard";
 
 function RepsList() {
     const reps = useOutletContext();
-    return reps.map((rep) => (
-      <RepCard rep={rep} />
+    return reps.map((rep, index) => (
+      <RepCard key={index} rep={rep} />
     ));
 }
 

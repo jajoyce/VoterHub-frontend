@@ -63,7 +63,7 @@ class UserAuth {
         console.log("Got user data.", parsedRes);
         return parsedRes;
       } else {
-        console.log("Error getting user data.");
+        console.log("Could not refresh user data. Status:", res.status);
         return null;
       }
     } catch (err) {

@@ -5,18 +5,21 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Outlet } from "react-router";
 import { useState } from "react";
+import { RecoilRoot, atom } from "recoil";
 
 function App() {
   const serverURL = "http://localhost:4000";
   const [address, setAddress] = useState("123 Main St, Kansas City, MO 64105");
   // const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
+  const userState = atom({ key: "user", default: null });
 
   return (
     <div className="App">
-      <Header props={{ user, setUser }} />
-      <Outlet context={{ serverURL, address, setAddress, user, setUser }} />
-      <Footer />
+      <RecoilRoot>
+        <Header userState={userState} />
+        <Outlet context={{ serverURL, address, setAddress }} />
+        <Footer />
+      </RecoilRoot>
     </div>
   );
 }

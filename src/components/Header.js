@@ -5,22 +5,26 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink, Link } from "react-router-dom";
 // import { LinkContainer } from "react-router-bootstrap";
 import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 import UserAuth from "../models/UserAuth";
 
 function Header(props) {
-  const { user, setUser } = props;
+  const [user, setUser] = useRecoilState(props.userState);
 
   useEffect(async () => {
     if (localStorage.getItem("jwToken")) {
       try {
-        const userData = UserAuth.getUser();
+        const userData = await UserAuth.getUser();
+        console.log("USER DATA:::: ", userData)
         setUser(userData);
       } catch (err) {
-        console.log("Failed to fetch user data.", err);
+        console.log("TEST Failed to fetch user data.", err);
         setUser(null);
       }
     }
   }, []);
+
+  const welcomeName = user ? `Welcome, ${user.firstName}` : "Welcome, Voter";
 
   return (
     <Navbar expand="md" variant="dark" sticky="top">
@@ -38,7 +42,7 @@ function Header(props) {
             <Nav.Link as={NavLink} to="/voter-info">
               My Voter Info
             </Nav.Link>
-            <NavDropdown title="Welcome, Voter" id="nav-dropdown">
+            <NavDropdown title={welcomeName} id="nav-dropdown">
               <NavDropdown.Item as={NavLink} to="/sign-up">
                 Sign Up
               </NavDropdown.Item>
