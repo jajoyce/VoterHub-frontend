@@ -50,82 +50,84 @@ function SignUp() {
     form;
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit} className="my-5">
-        <FloatingLabel label="Username *" className="mb-3">
-          <Form.Control
-            type="text"
-            name="username"
-            value={username}
-            onChange={handleChange}
-            placeholder="janedoe123"
-            required
-          />
-        </FloatingLabel>
-        <FloatingLabel label="Password *" className="mb-3">
-          <Form.Control
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            placeholder="********"
-            required
-          />
-        </FloatingLabel>
-        <FloatingLabel label="First Name *" className="mb-3">
-          <Form.Control
-            type="text"
-            name="firstName"
-            value={firstName}
-            onChange={handleChange}
-            placeholder="Jane"
-            required
-          />
-        </FloatingLabel>
-        <FloatingLabel label="Last Name" className="mb-3">
-          <Form.Control
-            type="text"
-            name="lastName"
-            value={lastName}
-            onChange={handleChange}
-            placeholder="Doe"
-          />
-        </FloatingLabel>
-        <FloatingLabel label="Address" className="mb-3">
-          <Form.Control
-            type="text"
-            name="address"
-            value={address}
-            onChange={handleChange}
-            placeholder="123 Main St, Kansas City, MO 64105"
-          />
-        </FloatingLabel>
-        <Form.Group className="my-3">
-          <Form.Label>
-            Are you registered to vote? &nbsp; &nbsp; &nbsp;{" "}
-          </Form.Label>
-          <Form.Check
-            type="radio"
-            name="registeredVoter"
-            value={true}
-            onChange={handleChange}
-            label="Yes"
-            inline
-          />
-          <Form.Check
-            type="radio"
-            name="registeredVoter"
-            value={false}
-            onChange={handleChange}
-            label="No / I'm not sure"
-            inline
-          />
-          <Form.Text>(Dont't worry, we can help with that!)</Form.Text>
-        </Form.Group>
-        <Button type="submit" className="my-3">
-          Sign Up
-        </Button>
-      </Form>
+    <Container className="full-height">
+      <Container className="mt-0 pt-4 mb-5">
+        <Form onSubmit={handleSubmit} className="mb-5">
+          <FloatingLabel label="Username *" className="mb-3">
+            <Form.Control
+              type="text"
+              name="username"
+              value={username}
+              onChange={handleChange}
+              placeholder="janedoe123"
+              required
+            />
+          </FloatingLabel>
+          <FloatingLabel label="Password *" className="mb-3">
+            <Form.Control
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="********"
+              required
+            />
+          </FloatingLabel>
+          <FloatingLabel label="First Name *" className="mb-3">
+            <Form.Control
+              type="text"
+              name="firstName"
+              value={firstName}
+              onChange={handleChange}
+              placeholder="Jane"
+              required
+            />
+          </FloatingLabel>
+          <FloatingLabel label="Last Name" className="mb-3">
+            <Form.Control
+              type="text"
+              name="lastName"
+              value={lastName}
+              onChange={handleChange}
+              placeholder="Doe"
+            />
+          </FloatingLabel>
+          <FloatingLabel label="Address" className="mb-3">
+            <Form.Control
+              type="text"
+              name="address"
+              value={address}
+              onChange={handleChange}
+              placeholder="123 Main St, Kansas City, MO 64105"
+            />
+          </FloatingLabel>
+          <Form.Group className="my-3">
+            <Form.Label>
+              Are you registered to vote? &nbsp; &nbsp; &nbsp;{" "}
+            </Form.Label>
+            <Form.Check
+              type="radio"
+              name="registeredVoter"
+              value={true}
+              onChange={handleChange}
+              label="Yes"
+              inline
+            />
+            <Form.Check
+              type="radio"
+              name="registeredVoter"
+              value={false}
+              onChange={handleChange}
+              label="No / I'm not sure"
+              inline
+            />
+            <Form.Text>(Dont't worry, we can help with that!)</Form.Text>
+          </Form.Group>
+          <Button type="submit" className="my-3">
+            Sign Up
+          </Button>
+        </Form>
+      </Container>
     </Container>
   );
 }

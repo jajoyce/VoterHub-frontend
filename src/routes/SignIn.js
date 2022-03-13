@@ -45,33 +45,35 @@ function SignIn() {
   const { username, password } = form;
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit} className="my-5">
-        <FloatingLabel label="Username" className="mb-3">
-          <Form.Control
-            type="text"
-            name="username"
-            value={username}
-            onChange={handleChange}
-            placeholder="janedoe123"
-            required
-          />
-        </FloatingLabel>
-        <FloatingLabel label="Password" className="mb-3">
-          <Form.Control
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            placeholder="********"
-            required
-          />
-        </FloatingLabel>
+    <Container className="full-height">
+      <Container className="mt-0 pt-4 mb-5">
+        <Form onSubmit={handleSubmit} className="mb-5">
+          <FloatingLabel label="Username" className="mb-3">
+            <Form.Control
+              type="text"
+              name="username"
+              value={username}
+              onChange={handleChange}
+              placeholder="janedoe123"
+              required
+            />
+          </FloatingLabel>
+          <FloatingLabel label="Password" className="mb-3">
+            <Form.Control
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="********"
+              required
+            />
+          </FloatingLabel>
 
-        <Button type="submit" className="my-3">
-          Sign In
-        </Button>
-      </Form>
+          <Button type="submit" className="my-3">
+            Sign In
+          </Button>
+        </Form>
+      </Container>
     </Container>
   );
 }

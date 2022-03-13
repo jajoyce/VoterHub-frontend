@@ -43,10 +43,12 @@ function Reps() {
   };
 
   return (
-    <Container className="my-4">
-      <h1>Your Elected Representatives</h1>
-      <h3 className="mb-4">at: {address}</h3>
-      {repsData ? loaded() : <h1>Loading...</h1>}
+    <Container className="full-height">
+      <Container className="mt-0 pt-4 mb-5">
+        <h1>Your Elected Representatives</h1>
+        <h3 className="mb-4">at: {address}</h3>
+        {repsData ? loaded() : <h1>Loading...</h1>}
+      </Container>
     </Container>
   );
 }
