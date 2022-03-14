@@ -89,12 +89,31 @@ class UserAuth {
         console.log("UPDATED USER. Token set", localStorage.jwToken);
         return this.getUser();
       } else {
-        console.log("Could not update user data. Status:", res.status);
-        return null;
+        console.log("Failed to update user data. Status:", res.status);
+        return false;
       }
     } catch (err) {
-      console.log("Failed to update user data:", err);
-      return null;
+      console.log("Error updating user data:", err);
+      return false;
+    }
+  };
+
+  static delete = async () => {
+    try {
+      const res = await fetch(`${authURL}/user`, {
+        method: "DELETE",
+        headers: { jwToken: localStorage.jwToken },
+      });
+      if (res.status === 200) {
+        console.log("DELETED USER.");
+        return true;
+      } else {
+        console.log("Failed to delete user. Status:", res.status);
+        return false;
+      }
+    } catch (err) {
+      console.log("Error deleting user:", err);
+      return false;
     }
   };
 }
