@@ -4,12 +4,15 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function AddressSearch(props) {
   const setAddress = props.setAddress;
   const [searchAddress, setSearchAddress] = useState("");
   const navigate = useNavigate();
+
+  const { pathname } = useLocation();
+  console.log(pathname);
 
   const handleChange = (e) => {
     setSearchAddress(e.target.value);
@@ -19,9 +22,11 @@ function AddressSearch(props) {
     e.preventDefault();
     setAddress(searchAddress);
     setSearchAddress("");
+    console.log();
     if (props.setSearchShow) {
       props.setSearchShow(false);
-    } else {
+    }
+    if (pathname !== "/representatives") {
       navigate("/representatives");
     }
   };

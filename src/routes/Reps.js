@@ -16,7 +16,7 @@ function Reps() {
   const getRepsData = async () => {
     const response = await fetch(fetchRepsURL);
     const data = await response.json();
-    console.log(data);
+    console.log("FETCHED REPS DATA", data);
     setRepsData(data);
   };
 
