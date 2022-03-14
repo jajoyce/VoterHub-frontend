@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { useOutletContext, Outlet } from "react-router";
 import Container from "react-bootstrap/Container";
 import Collapse from "react-bootstrap/Collapse";
-import RepsList from "../components/RepsList";
-import RepShow from "../components/RepShow";
+import { useRecoilState, useRecoilValue } from "recoil";
 import AddressSearch from "../components/AddressSearch";
 
 function Reps() {
-  const { serverURL, address, setAddress } = useOutletContext();
+  const { userState, addressState, serverURL } = useOutletContext();
+  const user = useRecoilValue(userState);
+  const [address, setAddress] = useRecoilState(addressState);
   const fetchRepsURL = serverURL + "/civicAPI/reps/" + address;
   const [reps, setReps] = useState(null);
   const [cleanAddress, setCleanAddress] = useState(null);

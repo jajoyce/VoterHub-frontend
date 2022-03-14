@@ -2,11 +2,14 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import AddressSearch from "../components/AddressSearch";
 import { useOutletContext } from "react-router";
+import { useSetRecoilState } from "recoil";
+import AddressSearch from "../components/AddressSearch";
 
 function Home() {
-  const { address, setAddress } = useOutletContext();
+  const { addressState } = useOutletContext();
+  const setAddress = useSetRecoilState(addressState);
+
   return (
     <Container className="full-height">
       <Container className="mt-0 pt-4 mb-5">

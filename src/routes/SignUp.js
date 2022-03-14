@@ -7,12 +7,13 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import UserAuth from "../models/UserAuth";
 
 function SignUp() {
-  const { userState } = useOutletContext();
-  const [user, setUser] = useRecoilState(userState);
+  const { userState, addressState } = useOutletContext();
+  const setUser = useSetRecoilState(userState);
+  const setAddress = useSetRecoilState(addressState);
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -34,8 +35,10 @@ function SignUp() {
       console.log("SIGNED UP");
       try {
         const userData = await UserAuth.getUser();
-        console.log("USER DATA:::: ", userData);
         setUser(userData);
+        if (userData.address) {
+          setAddress(userData.address);
+        }
         navigate("/representatives");
       } catch (err) {
         console.log("Failed to fetch user data.", err);
@@ -47,9 +50,6 @@ function SignUp() {
     }
   };
 
-  const { username, password, firstName, lastName, address, registeredVoter } =
-    form;
-
   return (
     <Container className="full-height">
       <Container className="mt-0 pt-4 mb-5">
@@ -60,7 +60,7 @@ function SignUp() {
               <Form.Control
                 type="text"
                 name="username"
-                value={username}
+                value={form.username}
                 onChange={handleChange}
                 placeholder="janedoe123"
                 required
@@ -70,7 +70,7 @@ function SignUp() {
               <Form.Control
                 type="password"
                 name="password"
-                value={password}
+                value={form.password}
                 onChange={handleChange}
                 placeholder="********"
                 required
@@ -80,7 +80,7 @@ function SignUp() {
               <Form.Control
                 type="text"
                 name="firstName"
-                value={firstName}
+                value={form.firstName}
                 onChange={handleChange}
                 placeholder="Jane"
                 required
@@ -90,7 +90,7 @@ function SignUp() {
               <Form.Control
                 type="text"
                 name="lastName"
-                value={lastName}
+                value={form.lastName}
                 onChange={handleChange}
                 placeholder="Doe"
               />
@@ -99,7 +99,7 @@ function SignUp() {
               <Form.Control
                 type="text"
                 name="address"
-                value={address}
+                value={form.address}
                 onChange={handleChange}
                 placeholder="123 Main St, Kansas City, MO 64105"
               />
@@ -124,7 +124,10 @@ function SignUp() {
                 label="No / I'm not sure"
                 inline
               />
-              <br /><Form.Text style={{textAlign:"right"}}>(Dont't worry, we can help with that!)</Form.Text>
+              <br />
+              <Form.Text style={{ textAlign: "right" }}>
+                (Dont't worry, we can help with that!)
+              </Form.Text>
             </Form.Group>
             <Button type="submit" className="mt-3">
               Sign Up

@@ -7,12 +7,13 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useOutletContext } from "react-router";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import UserAuth from "../models/UserAuth";
 
 function SignIn() {
-  const { userState } = useOutletContext();
-  const [user, setUser] = useRecoilState(userState);
+  const { userState, addressState } = useOutletContext();
+  const setUser = useSetRecoilState(userState);
+  const setAddress = useSetRecoilState(addressState);
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
@@ -30,8 +31,10 @@ function SignIn() {
       console.log("SIGNED IN");
       try {
         const userData = await UserAuth.getUser();
-        console.log("USER DATA:::: ", userData);
         setUser(userData);
+        if (userData.address) {
+          setAddress(userData.address);
+        }
         navigate("/representatives");
       } catch (err) {
         console.log("Failed to fetch user data.", err);

@@ -6,24 +6,22 @@ import { NavLink, Link } from "react-router-dom";
 // import { LinkContainer } from "react-router-bootstrap";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState, useResetRecoilState } from "recoil";
 import UserAuth from "../models/UserAuth";
 
 function Header(props) {
   const [user, setUser] = useRecoilState(props.userState);
+  const setAddress = useSetRecoilState(props.addressState);
+  const resetAddress = useResetRecoilState(props.addressState);
   const navigate = useNavigate();
-
-  const logout = () => {
-    setUser(null);
-    localStorage.clear();
-    navigate("/")
-  }
 
   useEffect(async () => {
     if (localStorage.getItem("jwToken")) {
       try {
         const userData = await UserAuth.getUser();
-        console.log("USER DATA:::: ", userData)
+        if (userData.address) {
+          setAddress(userData.address);
+        }
         setUser(userData);
       } catch (err) {
         console.log("TEST Failed to fetch user data.", err);
@@ -31,6 +29,13 @@ function Header(props) {
       }
     }
   }, []);
+
+  const logout = () => {
+    setUser(null);
+    resetAddress();
+    localStorage.clear();
+    navigate("/");
+  };
 
   const welcomeName = user ? `Welcome, ${user.firstName}` : "Welcome, Voter";
 

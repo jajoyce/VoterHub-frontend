@@ -107,6 +107,8 @@ a:hover {
   height: auto;
   max-height: 400px;
   object-fit: cover;
+  /* background-image: url("https://www.seekpng.com/png/detail/219-2195277_united-states-of-america-flag-3d-round-xl.png"); */
+  /* background-size: cover; */
 }
 
 .rep-show-card {

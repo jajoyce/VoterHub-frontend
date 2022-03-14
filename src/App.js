@@ -9,16 +9,18 @@ import { RecoilRoot, atom } from "recoil";
 
 function App() {
   const serverURL = "http://localhost:4000";
-  const [address, setAddress] = useState("123 Main St, Kansas City, MO 64105");
-  // const [loggedIn, setLoggedIn] = useState(false);
   const userState = atom({ key: "user", default: null });
+  const addressState = atom({
+    key: "address",
+    default: "123 Main St, Kansas City, MO 64105",
+  });
 
   return (
     <div className="App">
       <RecoilRoot>
-        <Header userState={userState} />
+        <Header userState={userState} addressState={addressState} />
         <Outlet
-          context={{ userState, serverURL, address, setAddress }}
+          context={{ userState, addressState, serverURL }}
           className="full-height"
         />
         <Footer />
