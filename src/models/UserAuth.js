@@ -71,6 +71,32 @@ class UserAuth {
       return null;
     }
   };
+
+  static update = async (formData) => {
+    try {
+      const res = await fetch(`${authURL}/user`, {
+        method: "PUT",
+        headers: {
+          jwToken: localStorage.jwToken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.status === 200) {
+        const parsedRes = await res.json();
+        localStorage.setItem("jwToken", parsedRes.jwToken);
+        console.log("UPDATED USER. Token set", localStorage.jwToken);
+        return this.getUser();
+      } else {
+        console.log("Could not update user data. Status:", res.status);
+        return null;
+      }
+    } catch (err) {
+      console.log("Failed to update user data:", err);
+      return null;
+    }
+  };
 }
 
 export default UserAuth;

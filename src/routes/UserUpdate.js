@@ -27,22 +27,21 @@ function UserUpdate() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (await UserAuth.update(form)) {
-      console.log("UPDATED USER");
-      try {
-        const userData = await UserAuth.getUser();
-        setUser(userData);
-        if (userData.address) {
-          setAddress(userData.address);
+    try {
+      const updatedUser = await UserAuth.update(form);
+      if (updatedUser) {
+        console.log("UPDATED USER");
+        setUser(updatedUser);
+        if (updatedUser.address) {
+          setAddress(updatedUser.address);
         }
         navigate("/representatives");
-      } catch (err) {
-        console.log("Failed to fetch user data.", err);
-        setUser(null);
+      } else {
+        console.log("User Update FAILED");
+        navigate("/");
       }
-    } else {
-      console.log("UserUpdate FAILED");
-      navigate("/");
+    } catch (err) {
+      console.log("Failed to fetch user data.", err);
     }
   };
 
