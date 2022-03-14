@@ -24,7 +24,7 @@ function Header(props) {
         }
         setUser(userData);
       } catch (err) {
-        console.log("TEST Failed to fetch user data.", err);
+        console.log("Failed to fetch user data.", err);
         setUser(null);
       }
     }
@@ -37,7 +37,23 @@ function Header(props) {
     navigate("/");
   };
 
-  const welcomeName = user ? `Welcome, ${user.firstName}` : "Welcome, Voter";
+  const userNav = user ? (
+    <NavDropdown title={`Welcome, ${user.firstName} `} id="nav-dropdown">
+      <NavDropdown.Item as={NavLink} to="">
+        My Account
+      </NavDropdown.Item>
+      <NavDropdown.Item onClick={logout}>Sign Out</NavDropdown.Item>
+    </NavDropdown>
+  ) : (
+    <>
+      <Nav.Link as={NavLink} to="/sign-up">
+        Sign Up
+      </Nav.Link>
+      <Nav.Link as={NavLink} to="/sign-in">
+        Sign In
+      </Nav.Link>
+    </>
+  );
 
   return (
     <Navbar expand="md" variant="dark" sticky="top">
@@ -55,18 +71,7 @@ function Header(props) {
             <Nav.Link as={NavLink} to="/voter-info">
               My Voter Info
             </Nav.Link>
-            <NavDropdown title={welcomeName} id="nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="/sign-up">
-                Sign Up
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/sign-in">
-                Sign In
-              </NavDropdown.Item>
-              <NavDropdown.Item>My Account</NavDropdown.Item>
-              <NavDropdown.Item>Settings</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item onClick={logout}>Sign Out</NavDropdown.Item>
-            </NavDropdown>
+            {userNav}
           </Navbar.Collapse>
         </Nav>
       </Container>
