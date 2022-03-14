@@ -136,7 +136,8 @@ a:hover {
 }
 
 .signup-card,
-.signin-card {
+.signin-card, 
+.user-update-card {
   max-width: 600px;
   margin: 0 auto;
   padding: 30px;

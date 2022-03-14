@@ -39,7 +39,7 @@ function Header(props) {
 
   const userNav = user ? (
     <NavDropdown title={`Welcome, ${user.firstName} `} id="nav-dropdown">
-      <NavDropdown.Item as={NavLink} to="">
+      <NavDropdown.Item as={NavLink} to="/account">
         My Account
       </NavDropdown.Item>
       <NavDropdown.Item onClick={logout}>Sign Out</NavDropdown.Item>

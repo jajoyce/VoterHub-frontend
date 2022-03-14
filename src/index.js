@@ -9,6 +9,8 @@ import Reps from "./routes/Reps";
 import VoterInfo from "./routes/VoterInfo";
 import SignUp from "./routes/SignUp";
 import SignIn from "./routes/SignIn";
+import UserUpdate from "./routes/UserUpdate";
+import UserDelete from "./routes/UserDelete";
 import RepsList from "./components/RepsList";
 import RepShow from "./components/RepShow";
 
@@ -25,6 +27,8 @@ ReactDOM.render(
           <Route path="voter-info" element={<VoterInfo />} />
           <Route path="sign-up" element={<SignUp />} />
           <Route path="sign-in" element={<SignIn />} />
+          <Route path="account" element={<UserUpdate />} />
+          <Route path="account-delete" element={<UserDelete />} />
         </Route>
       </Routes>
     </BrowserRouter>
