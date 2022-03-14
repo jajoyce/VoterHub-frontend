@@ -127,8 +127,7 @@ function UserUpdate() {
             <Button type="submit" className="mt-3">
               Update Account
             </Button>
-            <br />
-            <Button as={Link} to="/" variant="secondary" className="mt-3 mx-3">
+            <Button as={Link} to="/representatives" variant="secondary" className="mt-3 mx-3">
               Cancel
             </Button>
             <br />
@@ -136,7 +135,7 @@ function UserUpdate() {
               as={Link}
               to="/account-delete"
               variant="danger"
-              className="mt-3 mx-3"
+              className="mt-5 mx-3"
             >
               Delete Account
             </Button>
