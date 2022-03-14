@@ -44,7 +44,7 @@ a:hover {
 }
 
 .navbar {
-  background-color: #115;
+  background-color: #114;
 }
 
 .nav-link {
@@ -78,6 +78,12 @@ a:hover {
 .card-body {
   margin-left: 20px;
   text-align: left;
+}
+
+.reps-address {
+  border-bottom: 2px dotted #005;
+  color: #005;
+  cursor: pointer;
 }
 
 .rep-card {
@@ -127,7 +133,8 @@ a:hover {
   background-color: #f8f6ff;
 }
 
-.signup-card, .signin-card {
+.signup-card,
+.signin-card {
   max-width: 600px;
   margin: 0 auto;
   padding: 30px;

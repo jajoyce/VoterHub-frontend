@@ -14,7 +14,9 @@ function Home() {
         <h3>
           Stay informed on <em>your</em> government.
         </h3>
-        <AddressSearch address={address} setAddress={setAddress} />
+        <Container className="my-5 px-3">
+          <AddressSearch setAddress={setAddress} />
+        </Container>
         <Card className="home-card">
           <h3>Just enter your address to view: </h3>
           <ul className="home-list">
@@ -25,7 +27,11 @@ function Home() {
           </ul>
         </Card>
         <Container>
-          <img src="https://i.imgur.com/ydNZ1JK.png" alt="USA icon, VoterHub logo" className="mt-4"/>
+          <img
+            src="https://i.imgur.com/ydNZ1JK.png"
+            alt="USA icon, VoterHub logo"
+            className="mt-4"
+          />
         </Container>
       </Container>
     </Container>

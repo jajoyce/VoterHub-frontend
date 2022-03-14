@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function AddressSearch(props) {
-  const [address, setAddress] = [props.address, props.setAddress];
+  const setAddress = props.setAddress;
   const [searchAddress, setSearchAddress] = useState("");
   const navigate = useNavigate();
 
@@ -19,11 +19,15 @@ function AddressSearch(props) {
     e.preventDefault();
     setAddress(searchAddress);
     setSearchAddress("");
-    navigate("/representatives");
+    if (props.setSearchShow) {
+      props.setSearchShow(false);
+    } else {
+      navigate("/representatives");
+    }
   };
 
   return (
-    <Container className="my-5">
+    <Container className="m-0 p-0">
       <Form onSubmit={handleSubmit}>
         <InputGroup size="lg" className="mb-3 search-bar">
           <InputGroup.Text className="search-label">Address</InputGroup.Text>

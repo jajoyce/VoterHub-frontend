@@ -5,7 +5,9 @@ function Footer() {
   return (
     <Navbar className="footer">
       <Container>
-        <h5 className="footer-text">Government of the people, by the people, and for the people.</h5>
+        <h5 className="footer-text">
+          <em>Government of the people, by the people, for the people.</em>
+        </h5>
       </Container>
     </Navbar>
   );

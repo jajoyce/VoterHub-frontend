@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { useOutletContext, Outlet } from "react-router";
 import Container from "react-bootstrap/Container";
+import Collapse from "react-bootstrap/Collapse";
 import RepsList from "../components/RepsList";
 import RepShow from "../components/RepShow";
+import AddressSearch from "../components/AddressSearch";
 
 function Reps() {
-  const { serverURL, address } = useOutletContext();
+  const { serverURL, address, setAddress } = useOutletContext();
   const fetchRepsURL = serverURL + "/civicAPI/reps/" + address;
   console.log(fetchRepsURL);
   const [repsData, setRepsData] = useState(null);
+  const [searchShow, setSearchShow] = useState(false);
 
   const getRepsData = async () => {
     const response = await fetch(fetchRepsURL);
@@ -17,7 +20,7 @@ function Reps() {
     setRepsData(data);
   };
 
-  useEffect(() => getRepsData(), []);
+  useEffect(() => getRepsData(), [address]);
 
   const parseRepsData = (data) => {
     let repsArray = [];
@@ -45,9 +48,34 @@ function Reps() {
   return (
     <Container className="full-height">
       <Container className="mt-0 pt-4 mb-5">
-        <h1>Your Elected Representatives</h1>
-        <h3 className="mb-4">at: {address}</h3>
-        {repsData ? loaded() : <h1>Loading...</h1>}
+        <div className="m-0 p-0">
+          <div className="py-1">
+            <h1>Your Elected Representatives</h1>
+            <h3 className="mb-4">
+              <em>
+                <small>at: &nbsp; </small>
+              </em>
+              <span
+                className="reps-address"
+                onClick={() => setSearchShow(!searchShow)}
+              >
+                {address}
+              </span>
+            </h3>
+          </div>
+        </div>
+        <Collapse in={searchShow}>
+          <div className="m-0 p-0">
+            <div className="py-1 px-4">
+              <AddressSearch setAddress={setAddress} setSearchShow={setSearchShow}/>
+            </div>
+          </div>
+        </Collapse>
+        <div className="m-0 p-0">
+          <div className="py-1">
+            {repsData ? loaded() : <h1>Loading...</h1>}
+          </div>
+        </div>
       </Container>
     </Container>
   );
