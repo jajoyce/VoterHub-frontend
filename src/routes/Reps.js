@@ -9,39 +9,39 @@ import AddressSearch from "../components/AddressSearch";
 function Reps() {
   const { serverURL, address, setAddress } = useOutletContext();
   const fetchRepsURL = serverURL + "/civicAPI/reps/" + address;
-  console.log(fetchRepsURL);
-  const [repsData, setRepsData] = useState(null);
+  const [reps, setReps] = useState(null);
+  const [cleanAddress, setCleanAddress] = useState(null);
   const [searchShow, setSearchShow] = useState(false);
 
   const getRepsData = async () => {
     const response = await fetch(fetchRepsURL);
     const data = await response.json();
     console.log("FETCHED REPS DATA", data);
-    setRepsData(data);
+    setCleanAddress(data.cleanAddress);
+    setReps(data.officials);
   };
 
   useEffect(() => getRepsData(), [address]);
 
-  const parseRepsData = (data) => {
-    let repsArray = [];
-    for (const office of data.offices) {
-      for (const officialIndex of office.officialIndices) {
-        if (!repsData.officials[officialIndex].photoUrl) {
-          repsData.officials[officialIndex].photoUrl =
-            "https://images.vexels.com/media/users/3/129616/isolated/preview/fb517f8913bd99cd48ef00facb4a67c0-businessman-avatar-silhouette-by-vexels.png";
-        }
-        repsArray.push({
-          ...repsData.officials[officialIndex],
-          office: office.name,
-          index: officialIndex,
-        });
-      }
-    }
-    return repsArray;
-  };
+  // const parseRepsData = (data) => {
+  //   let repsArray = [];
+  //   for (const office of data.offices) {
+  //     for (const officialIndex of office.officialIndices) {
+  //       if (!repsData.officials[officialIndex].photoUrl) {
+  //         repsData.officials[officialIndex].photoUrl =
+  //           "https://images.vexels.com/media/users/3/129616/isolated/preview/fb517f8913bd99cd48ef00facb4a67c0-businessman-avatar-silhouette-by-vexels.png";
+  //       }
+  //       repsArray.push({
+  //         ...repsData.officials[officialIndex],
+  //         office: office.name,
+  //         index: officialIndex,
+  //       });
+  //     }
+  //   }
+  //   return repsArray;
+  // };
 
   const loaded = () => {
-    const reps = parseRepsData(repsData);
     return <Outlet context={reps} />;
   };
 
@@ -59,7 +59,7 @@ function Reps() {
                 className="reps-address"
                 onClick={() => setSearchShow(!searchShow)}
               >
-                {address}
+                {cleanAddress ? cleanAddress : address}
               </span>
             </h3>
           </div>
@@ -67,14 +67,15 @@ function Reps() {
         <Collapse in={searchShow}>
           <div className="m-0 p-0">
             <div className="py-1 px-4">
-              <AddressSearch setAddress={setAddress} setSearchShow={setSearchShow}/>
+              <AddressSearch
+                setAddress={setAddress}
+                setSearchShow={setSearchShow}
+              />
             </div>
           </div>
         </Collapse>
         <div className="m-0 p-0">
-          <div className="py-1">
-            {repsData ? loaded() : <h1>Loading...</h1>}
-          </div>
+          <div className="py-1">{reps ? loaded() : <h1>Loading...</h1>}</div>
         </div>
       </Container>
     </Container>

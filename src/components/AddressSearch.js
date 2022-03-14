@@ -12,7 +12,6 @@ function AddressSearch(props) {
   const navigate = useNavigate();
 
   const { pathname } = useLocation();
-  console.log(pathname);
 
   const handleChange = (e) => {
     setSearchAddress(e.target.value);
