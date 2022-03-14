@@ -80,21 +80,21 @@ a:hover {
   text-align: left;
 }
 
-.reps-address {
+.reps-address, 
+.voter-info-address {
   border-bottom: 2px dotted #118;
   color: #118;
   cursor: pointer;
 }
 
 .rep-card {
-  margin: 10px;
+  margin: 12px auto 20px;
   padding: 16px;
   background-color: #f8f6ff;
   border: 2px solid #448;
   border-radius: 10px;
   cursor: pointer;
   flex-direction: row;
-  margin: 15px auto;
 }
 
 .rep-card:hover {
@@ -112,13 +112,12 @@ a:hover {
 }
 
 .rep-show-card {
-  margin: 10px;
+  margin: 12px auto 20px;
   padding: 16px;
   background-color: #f8f6ff;
   border: 2px solid #448;
   border-radius: 10px;
   flex-direction: row;
-  margin: 15px auto;
 }
 
 .rep-show-img {
@@ -129,10 +128,13 @@ a:hover {
 }
 
 .voter-info-card {
-  margin: 30px auto;
+  margin: 12px auto 20px;
   padding: 20px;
   max-width: 80%;
   background-color: #f8f6ff;
+  border: 2px solid #448;
+  border-radius: 10px;
+  /* flex-direction: row; */
 }
 
 .signup-card,

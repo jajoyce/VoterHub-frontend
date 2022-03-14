@@ -51,7 +51,7 @@ function Reps() {
       <Container className="mt-0 pt-4 mb-5">
         <div className="m-0 p-0">
           <div className="py-1">
-            <h1>Your Elected Representatives</h1>
+            <h1>My Elected Representatives</h1>
             <h3 className="mb-4">
               <em>
                 <small>at: &nbsp; </small>
