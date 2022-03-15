@@ -1,4 +1,4 @@
-const authURL = "http://localhost:4000/user-auth";
+const authURL = "https://voter-hub.herokuapp.com/user-auth";
 
 class UserAuth {
   static register = async (formData) => {

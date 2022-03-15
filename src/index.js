@@ -15,24 +15,24 @@ import RepsList from "./components/RepsList";
 import RepShow from "./components/RepShow";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<Home />} />
-          <Route path="representatives" element={<Reps />}>
-            <Route index element={<RepsList />} />
-            <Route path=":id" element={<RepShow />} />
-          </Route>
-          <Route path="voter-info" element={<VoterInfo />} />
-          <Route path="sign-up" element={<SignUp />} />
-          <Route path="sign-in" element={<SignIn />} />
-          <Route path="account" element={<UserUpdate />} />
-          <Route path="account-delete" element={<UserDelete />} />
+  // <React.StrictMode>
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />}>
+        <Route index element={<Home />} />
+        <Route path="representatives" element={<Reps />}>
+          <Route index element={<RepsList />} />
+          <Route path=":id" element={<RepShow />} />
         </Route>
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>,
+        <Route path="voter-info" element={<VoterInfo />} />
+        <Route path="sign-up" element={<SignUp />} />
+        <Route path="sign-in" element={<SignIn />} />
+        <Route path="account" element={<UserUpdate />} />
+        <Route path="account-delete" element={<UserDelete />} />
+      </Route>
+    </Routes>
+  </BrowserRouter>,
+  // </React.StrictMode>
   document.getElementById("root")
 );
 
