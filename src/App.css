@@ -72,7 +72,12 @@ a:hover {
 }
 
 .blue-button {
-  background-color: #44b;
+  background-color: #339;
+}
+
+.voter-admin-button {
+  background-color: #339;
+  flex-direction: row;
 }
 
 .card-body {
@@ -80,7 +85,7 @@ a:hover {
   text-align: left;
 }
 
-.reps-address, 
+.reps-address,
 .voter-info-address {
   border-bottom: 2px dotted #118;
   color: #118;
@@ -127,6 +132,13 @@ a:hover {
   object-fit: cover;
 }
 
+.voter-info-img {
+  min-width: 15%;
+  max-width: 25%;
+  height: fit-content;
+  object-fit: cover;
+}
+
 .voter-info-card {
   margin: 12px auto 20px;
   padding: 20px;
@@ -134,12 +146,12 @@ a:hover {
   background-color: #f8f6ff;
   border: 2px solid #448;
   border-radius: 10px;
-  /* flex-direction: row; */
+  flex-direction: row;
 }
 
 .signup-card,
-.signin-card, 
-.user-update-card, 
+.signin-card,
+.user-update-card,
 .user-delete-card {
   max-width: 600px;
   margin: 0 auto;

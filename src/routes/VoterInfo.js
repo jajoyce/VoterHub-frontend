@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router";
 import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
 import Collapse from "react-bootstrap/Collapse";
 import { useRecoilState } from "recoil";
+import VoterInfoCard from "../components/VoterInfoCard";
 import AddressSearch from "../components/AddressSearch";
 
 function VoterInfo() {
@@ -19,16 +19,14 @@ function VoterInfo() {
     const data = await response.json();
     console.log("FETCHED VOTERINFO DATA", data);
     setCleanAddress(data.cleanAddress);
-    setVoterInfo(data.state);
+    setVoterInfo(data);
   };
 
   useEffect(() => getVoterInfoData(), [address]);
 
   const loaded = () => {
     return (
-      <Card className="voter-info-card">
-        <h2>Voter Info</h2>
-      </Card>
+      <VoterInfoCard voterInfo={voterInfo}/>
     );
   };
 
@@ -62,7 +60,9 @@ function VoterInfo() {
           </div>
         </Collapse>
         <div className="m-0 p-0">
-          <div className="py-1">{voterInfo ? loaded() : <h1>Loading...</h1>}</div>
+          <div className="py-1">
+            {voterInfo ? loaded() : <h1>Loading...</h1>}
+          </div>
         </div>
       </Container>
     </Container>
