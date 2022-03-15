@@ -44,19 +44,19 @@ function VoterInfoCard(props) {
         ) : null}
         <h5>{localAdmin.electionOfficials[0].officePhoneNumber}</h5>
         {localAdmin.physicalAddress ? (
-        <>
-          <p className="mt-3 mb-1">
-            <em>Office Address:</em>
-          </p>
-          <h5>
-            {localAdmin.physicalAddress.line1}
-            <br />
-            {localAdmin.physicalAddress.city},{" "}
-            {localAdmin.physicalAddress.state}{" "}
-            {localAdmin.physicalAddress.zip}
-          </h5>
-        </>
-      ) : null}
+          <>
+            <p className="mt-3 mb-1">
+              <em>Office Address:</em>
+            </p>
+            <h5>
+              {localAdmin.physicalAddress.line1}
+              <br />
+              {localAdmin.physicalAddress.city},{" "}
+              {localAdmin.physicalAddress.state}{" "}
+              {localAdmin.physicalAddress.zip}
+            </h5>
+          </>
+        ) : null}
       </div>
     );
   } else {
@@ -66,7 +66,34 @@ function VoterInfoCard(props) {
   let pollsDiv;
   if (voterInfo.pollingLocations) {
     const polls = voterInfo.pollingLocations[0];
-    pollsDiv = <div>Polls</div>;
+    pollsDiv = (
+      <div className="mb-5 px-4 voter-info-card">
+        <h3>Polling Location:</h3>
+        <h4 className="my-3">
+          {polls.address.line1}
+          <br />
+          {polls.address.city}, {polls.address.state} {polls.address.zip}
+        </h4>
+        {polls.notes ? (
+          <h5>
+            <em><small>Notes: </small></em>
+            {polls.notes}
+          </h5>
+        ) : null}
+        {polls.pollingHours ? (
+          <h5>
+            <em><small>Hours: </small></em>
+            {polls.pollingHours}
+          </h5>
+        ) : null}
+        {polls.sources[0].name ? (
+          <h5>
+            <em><small>Source: </small></em>
+            {polls.sources[0].name}
+          </h5>
+        ) : null}
+      </div>
+    );
   } else {
     pollsDiv = null;
   }
@@ -157,7 +184,7 @@ function VoterInfoCard(props) {
           {adminDiv}
           {localDiv}
         </div>
-        <div></div>
+        {/* <div></div> */}
         <img
           src="https://cdn-icons-png.flaticon.com/512/1902/1902201.png"
           className="voter-info-img"

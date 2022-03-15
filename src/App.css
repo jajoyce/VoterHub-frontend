@@ -137,6 +137,7 @@ a:hover {
   max-width: 25%;
   height: fit-content;
   object-fit: cover;
+  margin-top: 20px;
 }
 
 .voter-info-card {
