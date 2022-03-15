@@ -11,11 +11,54 @@ function VoterInfoCard(props) {
 
   const admin = voterInfo.state[0].electionAdministrationBody;
 
+  const MailTo = ({ address, children }) => {
+    return <a href={`mailto:${address}`}>{children}</a>;
+  };
+
   let localDiv;
   if (voterInfo.state[0].local_jurisdiction) {
     const localAdmin =
       voterInfo.state[0].local_jurisdiction.electionAdministrationBody;
-    localDiv = <div>Local</div>;
+    localDiv = (
+      <div className="mb-5">
+        <h3>Local Elections Administrator:</h3>
+        <h4>{voterInfo.state[0].local_jurisdiction.name}</h4>
+        {localAdmin.electionInfoUrl ? (
+          <Button
+            className="voter-admin-button mx-2 my-2"
+            href={localAdmin.electionInfoUrl}
+            target="_blank"
+          >
+            Local Elections Info
+          </Button>
+        ) : null}
+        <p className="mt-2 mb-1">
+          <em>Contact Local Elections Office:</em>
+        </p>
+        {localAdmin.electionOfficials[0].emailAddress ? (
+          <h5>
+            <MailTo address={localAdmin.electionOfficials[0].emailAddress}>
+              {localAdmin.electionOfficials[0].emailAddress}
+            </MailTo>
+          </h5>
+        ) : null}
+        <h5>{localAdmin.electionOfficials[0].officePhoneNumber}</h5>
+        {localAdmin.physicalAddress ? (
+        <>
+          <p className="mt-3 mb-1">
+            <em>Office Address:</em>
+          </p>
+          <h5>
+            {localAdmin.physicalAddress.line1}
+            <br />
+            {localAdmin.physicalAddress.city},{" "}
+            {localAdmin.physicalAddress.state}{" "}
+            {localAdmin.physicalAddress.zip}
+          </h5>
+        </>
+      ) : null}
+      </div>
+    );
   } else {
     localDiv = null;
   }
@@ -37,55 +80,61 @@ function VoterInfoCard(props) {
       </p>
       {admin.electionRegistrationUrl ? (
         <Button
-          className="voter-admin-button mx-3 my-2"
+          className="voter-admin-button mx-2 my-2"
           href={admin.electionRegistrationUrl}
+          target="_blank"
         >
           Register to Vote
         </Button>
       ) : null}
       {admin.electionRegistrationConfirmationUrl ? (
         <Button
-          className="voter-admin-button mx-3 my-2"
+          className="voter-admin-button mx-2 my-2"
           href={admin.electionRegistrationConfirmationUrl}
+          target="_blank"
         >
           Confirm Registration
         </Button>
       ) : null}
       {admin.electionInfoUrl ? (
         <Button
-          className="voter-admin-button mx-3 my-2"
+          className="voter-admin-button mx-2 my-2"
           href={admin.electionInfoUrl}
+          target="_blank"
         >
           Election Information
         </Button>
       ) : null}
       {admin.absenteeVotingInfoUrl ? (
         <Button
-          className="voter-admin-button mx-3 my-2"
+          className="voter-admin-button mx-2 my-2"
           href={admin.absenteeVotingInfoUrl}
+          target="_blank"
         >
           Absentee Voting
         </Button>
       ) : null}
       {admin.votingLocationFinderUrl ? (
         <Button
-          className="voter-admin-button mx-3 my-2"
+          className="voter-admin-button mx-2 my-2"
           href={admin.votingLocationFinderUrl}
+          target="_blank"
         >
           Find Polling Location
         </Button>
       ) : null}
       {admin.ballotInfoUrl ? (
         <Button
-          className="voter-admin-button mx-3 my-2"
+          className="voter-admin-button mx-2 my-2"
           href={admin.ballotInfoUrl}
+          target="_blank"
         >
           Ballot Information
         </Button>
       ) : null}
       {admin.correspondenceAddress ? (
         <>
-          <p className="mt-2 mb-0">
+          <p className="mt-2 mb-1">
             <em>Office Address:</em>
           </p>
           <h5>
