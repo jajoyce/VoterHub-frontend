@@ -184,3 +184,9 @@ a:hover {
   border-radius: 10px;
   background-color: #f4f4ff;
 }
+
+.rep-note-card {
+  max-width: 500px;
+  margin: 10px auto;
+  padding: 10px;
+}

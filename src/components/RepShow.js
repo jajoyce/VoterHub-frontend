@@ -6,14 +6,31 @@ import Col from "react-bootstrap/Col";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import { useParams, useOutletContext } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import RepNotes from "./RepNotes";
+import NoteRep from "../models/NoteRep";
 
 function RepShow() {
   const reps = useOutletContext();
   const repIndex = useParams().id;
   const rep = reps[repIndex];
+  const [notes, setNotes] = useState(null);
+
+  const getNotes = async (rep) => {
+    const allNotes = await NoteRep.getAll();
+    let newNotes = [];
+    for (const note of allNotes) {
+      if (note.repName === rep.name && note.repOffice === rep.office) {
+        newNotes.push(note);
+      }
+    }
+    if (newNotes.length > 0) {
+      setNotes(newNotes);
+    }
+  };
 
   useEffect(() => {
+    getNotes(rep);
     window.scrollTo(0, 0);
   }, []);
 
@@ -146,6 +163,13 @@ function RepShow() {
           </Container>
         </div>
       </Card>
+      {notes ?
+      <RepNotes
+        notes={notes}
+        setNotes={setNotes}
+        repName={rep.name}
+        repOffice={rep.office}
+      /> : null}
     </Container>
   );
 }
