@@ -11,6 +11,7 @@ function RepNotes(props) {
       note={note}
       repName={repName}
       repOffice={repOffice}
+      setNotes={setNotes}
     />
   ));
   return (
