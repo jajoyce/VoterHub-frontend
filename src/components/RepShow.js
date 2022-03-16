@@ -105,7 +105,9 @@ function RepShow() {
           );
         }
       }
-      const channelList = array.map((elem) => <div>{elem}</div>);
+      const channelList = array.map((elem, index) => (
+        <div key={index}>{elem}</div>
+      ));
       return (
         <>
           <h5>
@@ -163,13 +165,14 @@ function RepShow() {
           </Container>
         </div>
       </Card>
-      {notes ?
-      <RepNotes
-        notes={notes}
-        setNotes={setNotes}
-        repName={rep.name}
-        repOffice={rep.office}
-      /> : null}
+      {notes ? (
+        <RepNotes
+          notes={notes}
+          setNotes={setNotes}
+          repName={rep.name}
+          repOffice={rep.office}
+        />
+      ) : null}
     </Container>
   );
 }
