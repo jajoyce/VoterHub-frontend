@@ -111,7 +111,7 @@ a:hover {
   margin: 12px auto 20px;
   padding: 16px;
   background-color: #f8f6ff;
-  border: 2px solid #448;
+  border: 2px solid #668;
   border-radius: 10px;
   cursor: pointer;
   flex-direction: row;
@@ -136,7 +136,7 @@ a:hover {
   margin: 12px auto 20px;
   padding: 16px;
   background-color: #f8f6ff;
-  border: 2px solid #448;
+  border: 2px solid #668;
   border-radius: 10px;
   flex-direction: row;
 }
@@ -153,7 +153,6 @@ a:hover {
 }
 
 .voter-info-img {
-  
   width: 100%;
   height: fit-content;
   object-fit: cover;
@@ -169,7 +168,7 @@ a:hover {
   padding: 20px;
   max-width: 80%;
   background-color: #f8f6ff;
-  border: 2px solid #448;
+  border: 2px solid #668;
   border-radius: 10px;
   flex-direction: row;
 }
@@ -181,6 +180,31 @@ a:hover {
   max-width: 600px;
   margin: 0 auto;
   padding: 30px;
+  border: 2px solid #668;
   border-radius: 10px;
   background-color: #f4f4ff;
+}
+
+.rep-note-card {
+  max-width: 700px;
+  margin: 10px auto;
+  padding: 20px;
+  border: 2px solid #668;
+  border-radius: 10px;
+  background-color: #f8f6ff;
+}
+
+.note-text {
+  text-align: left;
+}
+
+.v-center {
+  margin: auto;
+  vertical-align: middle;
+}
+
+.or-span {
+  font-size: large;
+  padding: 10px;
+  vertical-align: bottom;
 }

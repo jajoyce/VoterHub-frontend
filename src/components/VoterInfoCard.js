@@ -196,9 +196,9 @@ function VoterInfoCard(props) {
             className="voter-info-img mb-5"
             alt="Ballot box"
           />
-          <Button variant="success" className="mt-5 mb-2">
+          {/* <Button variant="success" className="mt-5 mb-2">
             Add a Note to Self
-          </Button>
+          </Button> */}
         </div>
       </Card>
     </Container>
