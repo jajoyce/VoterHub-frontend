@@ -83,7 +83,7 @@ class NoteRep {
       });
       if (res.status === 200) {
         console.log("DELETED REP NOTE.");
-        return this.getAll;
+        return this.getAll();
       } else {
         console.log("FAILED TO DELETE REP NOTE. Status:", res.status);
         return null;

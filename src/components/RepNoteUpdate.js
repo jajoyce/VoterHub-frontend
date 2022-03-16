@@ -18,19 +18,32 @@ function RepNoteUpdate(props) {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const updatedNotes = await NoteRep.update(form);
-      if (updatedNotes) {
-        setNotes(updatedNotes);
+      const notesAfterUpdate = await NoteRep.update(form);
+      if (notesAfterUpdate) {
+        setNotes(notesAfterUpdate);
         setShowForm(false);
       } else {
-        console.log("handleUpdate could not get updated notes.");
+        console.log("handleUpdate could not get updated notes");
       }
     } catch (err) {
       console.log("handleUpdate failed to update note", err);
     }
   };
 
-  const handleDelete = () => {};
+  const handleDelete = async () => {
+    try {
+      const notesAfterDelete = await NoteRep.delete({ id: note.id });
+      if (notesAfterDelete) {
+        console.log(notesAfterDelete);
+        setNotes(notesAfterDelete);
+        setShowForm(false);
+      } else {
+        console.log("handleDelete could not get updated notes");
+      }
+    } catch (err) {
+      console.log("handleDelete failed to delete note", err);
+    }
+  };
 
   return (
     <>
