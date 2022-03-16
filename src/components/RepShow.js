@@ -6,11 +6,16 @@ import Col from "react-bootstrap/Col";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import { useParams, useOutletContext } from "react-router";
+import { useEffect } from "react";
 
 function RepShow() {
   const reps = useOutletContext();
   const repIndex = useParams().id;
   const rep = reps[repIndex];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const websiteButton = rep.urls ? (
     <div>
