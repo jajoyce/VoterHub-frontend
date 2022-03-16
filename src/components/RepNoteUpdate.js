@@ -7,7 +7,7 @@ import { useState } from "react";
 import NoteRep from "../models/NoteRep";
 
 function RepNoteUpdate(props) {
-  const { note, setNotes, setShowForm } = props;
+  const { note, setRepNotes, setShowForm } = props;
 
   const [form, setForm] = useState({ id: note.id, content: note.content });
 
@@ -20,7 +20,7 @@ function RepNoteUpdate(props) {
     try {
       const notesAfterUpdate = await NoteRep.update(form);
       if (notesAfterUpdate) {
-        setNotes(notesAfterUpdate);
+        setRepNotes(notesAfterUpdate);
         setShowForm(false);
       } else {
         console.log("handleUpdate could not get updated notes");
@@ -35,7 +35,7 @@ function RepNoteUpdate(props) {
       const notesAfterDelete = await NoteRep.delete({ id: note.id });
       if (notesAfterDelete) {
         console.log(notesAfterDelete);
-        setNotes(notesAfterDelete);
+        setRepNotes(notesAfterDelete);
         setShowForm(false);
       } else {
         console.log("handleDelete could not get updated notes");
@@ -55,7 +55,8 @@ function RepNoteUpdate(props) {
           name="content"
           value={form.content}
           onChange={handleChange}
-          placeholder="placeholder"
+          placeholder="Emailed their office about the pothole down the street, will follow up."
+          required
         />
         <Button variant="success" onClick={handleUpdate} className="mx-2 mt-3">
           Update

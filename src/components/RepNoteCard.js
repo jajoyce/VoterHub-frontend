@@ -9,7 +9,7 @@ import NoteRep from "../models/NoteRep";
 import RepNoteUpdate from "./RepNoteUpdate";
 
 function RepNoteCard(props) {
-  const { note, setNotes, repName, repOffice } = props;
+  const { note, setRepNotes, repName, repOffice } = props;
   const [showForm, setShowForm] = useState(false);
 
   const NoteView = () => (
@@ -33,11 +33,11 @@ function RepNoteCard(props) {
   );
 
   return (
-    <Card className="rep-note-card">
+    <Card className="rep-note-card mt-3">
       {showForm ? (
         <RepNoteUpdate
           note={note}
-          setNotes={setNotes}
+          setRepNotes={setRepNotes}
           setShowForm={setShowForm}
         />
       ) : (

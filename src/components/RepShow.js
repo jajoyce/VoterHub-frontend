@@ -8,20 +8,29 @@ import { Link } from "react-router-dom";
 import { useParams, useOutletContext } from "react-router";
 import { useEffect, useState } from "react";
 import RepNotes from "./RepNotes";
+import RepNoteCreate from "./RepNoteCreate";
 import NoteRep from "../models/NoteRep";
 
 function RepShow() {
-  const reps = useOutletContext();
+  const { reps, user } = useOutletContext();
+
   const repIndex = useParams().id;
   const rep = reps[repIndex];
   const [notes, setNotes] = useState(null);
+  const [showNoteCreate, setShowNoteCreate] = useState(false);
 
   const getNotes = async (rep) => {
-    const allNotes = await NoteRep.getAll();
+    if (user) {
+      const allNotes = await NoteRep.getAll();
+      setRepNotes(allNotes);
+    }
+  };
+
+  const setRepNotes = (allNotes) => {
     let newNotes = [];
-    for (const note of allNotes) {
-      if (note.repName === rep.name && note.repOffice === rep.office) {
-        newNotes.push(note);
+    for (const n of allNotes) {
+      if (n.repName === rep.name && n.repOffice === rep.office) {
+        newNotes.push(n);
       }
     }
     if (newNotes.length > 0) {
@@ -131,9 +140,16 @@ function RepShow() {
               ← Back to all reps
             </h6>
           </Link>
-          <Button variant="success" className="mt-5 mb-2">
+          {/* <Button
+            variant="primary"
+            className="blue-button mt-5 mb-2"
+            onClick={() => {
+              setShowNoteCreate(true);
+              window.scrollTo(0, 1000);
+            }}
+          >
             Add a Note to Self
-          </Button>
+          </Button> */}
         </div>
         <div className="card-body">
           <h2 className="mb-3">{rep.name}</h2>
@@ -165,14 +181,38 @@ function RepShow() {
           </Container>
         </div>
       </Card>
+      <h3 className="mt-4">My Personal Notes</h3>
+      <h5 className="mb-3">
+        <em>Save private notes about {rep.name} for your reference:</em>
+      </h5>
       {notes ? (
         <RepNotes
           notes={notes}
-          setNotes={setNotes}
+          setRepNotes={setRepNotes}
           repName={rep.name}
           repOffice={rep.office}
+          user={user}
         />
       ) : null}
+      {showNoteCreate ? (
+        <RepNoteCreate
+          setRepNotes={setRepNotes}
+          repName={rep.name}
+          repOffice={rep.office}
+          setShowNoteCreate={setShowNoteCreate}
+          user={user}
+        />
+      ) : (
+        <Container className="mt-4">
+          <Button
+            variant="success"
+            onClick={() => setShowNoteCreate(true)}
+            className="mx-auto mt-1 mb-3"
+          >
+            Add a New Note
+          </Button>
+        </Container>
+      )}
     </Container>
   );
 }

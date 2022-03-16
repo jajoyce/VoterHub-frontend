@@ -2,27 +2,21 @@ import Container from "react-bootstrap/Container";
 import RepNoteCard from "./RepNoteCard";
 
 function RepNotes(props) {
-  const { notes, setNotes, repName, repOffice } = props;
+  const { notes, setRepNotes, repName, repOffice, user } = props;
   console.log("RepNotes", notes);
 
-  const repNoteCards = notes.map((note, index) => (
-    <RepNoteCard
-      key={index}
-      note={note}
-      repName={repName}
-      repOffice={repOffice}
-      setNotes={setNotes}
-    />
-  ));
-  return (
-    <Container className="mt-4">
-      <h3>My Personal Notes</h3>
-      <h5 className="mb-3">
-        <em>Save private notes about {repName} for your reference:</em>
-      </h5>
-      {repNoteCards}
-    </Container>
-  );
+  const repNoteCards = user
+    ? notes.map((note, index) => (
+        <RepNoteCard
+          key={index}
+          note={note}
+          repName={repName}
+          repOffice={repOffice}
+          setRepNotes={setRepNotes}
+        />
+      ))
+    : null;
+  return <Container className="mt-4">{repNoteCards}</Container>;
 }
 
 export default RepNotes;

@@ -153,7 +153,6 @@ a:hover {
 }
 
 .voter-info-img {
-  
   width: 100%;
   height: fit-content;
   object-fit: cover;
@@ -202,4 +201,10 @@ a:hover {
 .v-center {
   margin: auto;
   vertical-align: middle;
+}
+
+.or-span {
+  font-size: large;
+  padding: 10px;
+  vertical-align: bottom;
 }
