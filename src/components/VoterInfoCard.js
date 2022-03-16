@@ -76,19 +76,25 @@ function VoterInfoCard(props) {
         </h4>
         {polls.notes ? (
           <h5>
-            <em><small>Notes: </small></em>
+            <em>
+              <small>Notes: </small>
+            </em>
             {polls.notes}
           </h5>
         ) : null}
         {polls.pollingHours ? (
           <h5>
-            <em><small>Hours: </small></em>
+            <em>
+              <small>Hours: </small>
+            </em>
             {polls.pollingHours}
           </h5>
         ) : null}
         {polls.sources[0].name ? (
           <h5>
-            <em><small>Source: </small></em>
+            <em>
+              <small>Source: </small>
+            </em>
             {polls.sources[0].name}
           </h5>
         ) : null}
@@ -184,12 +190,16 @@ function VoterInfoCard(props) {
           {adminDiv}
           {localDiv}
         </div>
-        {/* <div></div> */}
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/1902/1902201.png"
-          className="voter-info-img"
-          alt="Ballot box"
-        />
+        <div className="voter-info-img-div">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1902/1902201.png"
+            className="voter-info-img mb-5"
+            alt="Ballot box"
+          />
+          <Button variant="success" className="mt-5 mb-2">
+            Add a Note to Self
+          </Button>
+        </div>
       </Card>
     </Container>
   );

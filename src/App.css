@@ -71,12 +71,16 @@ a:hover {
   background-color: #f8f4ff;
 }
 
-.blue-button {
+.blue-button,
+.voter-admin-button {
   background-color: #339;
+}
+.blue-button:hover,
+.voter-admin-button:hover {
+  background-color: #217;
 }
 
 .voter-admin-button {
-  background-color: #339;
   flex-direction: row;
 }
 
@@ -91,6 +95,17 @@ a:hover {
   color: #118;
   cursor: pointer;
 }
+.reps-address:hover,
+.voter-info-address:hover {
+  border-bottom: 2px dotted #44b;
+  color: #44b;
+  cursor: pointer;
+}
+
+.address-search {
+  max-width: 900px;
+  margin: 0 auto;
+}
 
 .rep-card {
   margin: 12px auto 20px;
@@ -100,6 +115,7 @@ a:hover {
   border-radius: 10px;
   cursor: pointer;
   flex-direction: row;
+  max-width: 900px;
 }
 
 .rep-card:hover {
@@ -110,7 +126,7 @@ a:hover {
 .rep-card-img {
   width: 25%;
   height: auto;
-  max-height: 400px;
+  max-height: 250px;
   object-fit: cover;
   /* background-image: url("https://www.seekpng.com/png/detail/219-2195277_united-states-of-america-flag-3d-round-xl.png"); */
   /* background-size: cover; */
@@ -126,18 +142,26 @@ a:hover {
 }
 
 .rep-show-img {
-  min-width: 25%;
-  max-width: 35%;
+  width: 100%;
   height: fit-content;
   object-fit: cover;
 }
+.rep-show-img-div {
+  min-width: 25%;
+  max-width: 35%;
+  margin: 10px;
+}
 
 .voter-info-img {
-  min-width: 15%;
-  max-width: 25%;
+  
+  width: 100%;
   height: fit-content;
   object-fit: cover;
   margin-top: 20px;
+}
+.voter-info-img-div {
+  min-width: 15%;
+  max-width: 25%;
 }
 
 .voter-info-card {

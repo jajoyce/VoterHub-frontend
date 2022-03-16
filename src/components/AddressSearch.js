@@ -25,13 +25,13 @@ function AddressSearch(props) {
     if (props.setSearchShow) {
       props.setSearchShow(false);
     }
-    if (pathname !== "/representatives") {
+    if (pathname !== "/representatives" && pathname !== "/voter-info") {
       navigate("/representatives");
     }
   };
 
   return (
-    <Container className="m-0 p-0">
+    <Container className="p-0 address-search">
       <Form onSubmit={handleSubmit}>
         <InputGroup size="lg" className="mb-3 search-bar">
           <InputGroup.Text className="search-label">Address</InputGroup.Text>

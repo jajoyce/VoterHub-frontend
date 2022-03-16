@@ -9,6 +9,7 @@ import { RecoilRoot, atom } from "recoil";
 
 function App() {
   const serverURL = "https://voter-hub.herokuapp.com";
+  // const serverURL = "http://localhost:4000";
   const userState = atom({ key: "user", default: null });
   const addressState = atom({
     key: "address",
