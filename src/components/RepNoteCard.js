@@ -3,13 +3,11 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import { useState } from "react";
-import NoteRep from "../models/NoteRep";
 import RepNoteUpdate from "./RepNoteUpdate";
 
 function RepNoteCard(props) {
-  const { note, setRepNotes, repName, repOffice } = props;
+  const { note, setRepNotes } = props;
   const [showForm, setShowForm] = useState(false);
 
   const NoteView = () => (

@@ -2,8 +2,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { NavLink, Link } from "react-router-dom";
-// import { LinkContainer } from "react-router-bootstrap";
+import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useRecoilState, useSetRecoilState, useResetRecoilState } from "recoil";
@@ -15,8 +14,8 @@ function Header(props) {
   const resetAddress = useResetRecoilState(props.addressState);
   const navigate = useNavigate();
 
-  useEffect(async () => {
-    if (localStorage.getItem("jwToken")) {
+  useEffect(() => {
+    async function getUser() {
       try {
         const userData = await UserAuth.getUser();
         if (userData.address) {
@@ -28,14 +27,15 @@ function Header(props) {
         setUser(null);
       }
     }
+    if (localStorage.getItem("jwToken")) getUser();
   }, []);
 
-  const logout = () => {
+  function logout() {
     setUser(null);
     resetAddress();
     localStorage.clear();
     navigate("/");
-  };
+  }
 
   const userNav = user ? (
     <NavDropdown title={`Welcome, ${user.firstName} `} id="nav-dropdown">
@@ -59,7 +59,11 @@ function Header(props) {
     <Navbar expand="md" variant="dark" sticky="top">
       <Container fluid className="mx-3">
         <Navbar.Brand as={NavLink} to="/">
-          <img src="https://i.imgur.com/ydNZ1JK.png" className="header-logo" />
+          <img
+            src="https://i.imgur.com/ydNZ1JK.png"
+            className="header-logo"
+            alt="USA VoterHub logo"
+          />
           <div className="header-home-text">VoterHub</div>
         </Navbar.Brand>
         <Nav>

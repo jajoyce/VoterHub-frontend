@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import { useParams, useOutletContext } from "react-router";
 import { useEffect, useState } from "react";
@@ -19,23 +18,28 @@ function RepShow() {
   const [notes, setNotes] = useState(null);
   const [showNoteCreate, setShowNoteCreate] = useState(false);
 
-  const getNotes = async (rep) => {
+  // TO DO: Refactor to move fetch out of each rep show page.
+  async function getNotes(rep) {
     if (user) {
       const allNotes = await NoteRep.getAll();
-      setRepNotes(allNotes);
-    }
-  };
-
-  const setRepNotes = (allNotes) => {
-    let newNotes = [];
-    for (const n of allNotes) {
-      if (n.repName === rep.name && n.repOffice === rep.office) {
-        newNotes.push(n);
+      if (allNotes) {
+        setRepNotes(allNotes);
       }
     }
-    if (newNotes.length > 0) {
-      setNotes(newNotes);
-    }
+  }
+
+  const setRepNotes = (allNotes) => {
+    if (allNotes) {
+      let thisRepNotes = [];
+      for (const n of allNotes) {
+        if (n.repName === rep.name && n.repOffice === rep.office) {
+          thisRepNotes.push(n);
+        }
+      }
+      if (thisRepNotes.length > 0) {
+        setNotes(thisRepNotes);
+      } else setNotes(null);
+    } else setNotes(null);
   };
 
   useEffect(() => {
@@ -45,7 +49,12 @@ function RepShow() {
 
   const websiteButton = rep.urls ? (
     <div>
-      <Button className="blue-button mb-4" href={rep.urls[0]} target="_blank">
+      <Button
+        className="blue-button mb-4"
+        href={rep.urls[0]}
+        target="_blank"
+        rel="noreferrer"
+      >
         Official Website
       </Button>
     </div>
@@ -80,14 +89,13 @@ function RepShow() {
   const Channels = ({ channels }) => {
     if (channels) {
       let array = [];
-      console.log("Channels: ", channels);
       for (const channel of channels) {
         if (channel.type === "Facebook") {
           const href = "https://www.facebook.com/" + channel.id;
           array.push(
             <h5>
               Facebook:{" "}
-              <a href={href} target="_blank">
+              <a href={href} target="_blank" rel="noreferrer">
                 {channel.id}
               </a>
             </h5>
@@ -97,7 +105,7 @@ function RepShow() {
           array.push(
             <h5>
               Twitter:{" "}
-              <a href={href} target="_blank">
+              <a href={href} target="_blank" rel="noreferrer">
                 @{channel.id}
               </a>
             </h5>
@@ -107,7 +115,7 @@ function RepShow() {
           array.push(
             <h5>
               YouTube:{" "}
-              <a href={href} target="_blank">
+              <a href={href} target="_blank" rel="noreferrer">
                 {channel.id}
               </a>
             </h5>

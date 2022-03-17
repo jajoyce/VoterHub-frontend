@@ -1,9 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { LinkContainer } from "react-router-bootstrap";
-import { Link } from "react-router-dom";
-import { useParams, useOutletContext } from "react-router";
 
 function VoterInfoCard(props) {
   const voterInfo = props.voterInfo;
@@ -28,6 +25,7 @@ function VoterInfoCard(props) {
             className="voter-admin-button mx-2 my-2"
             href={localAdmin.electionInfoUrl}
             target="_blank"
+            rel="noreferrer"
           >
             Local Elections Info
           </Button>
@@ -103,7 +101,6 @@ function VoterInfoCard(props) {
   } else {
     pollsDiv = null;
   }
-
   const adminDiv = (
     <div className="mb-5">
       <h3>{voterInfo.state[0].name} Elections Administrator:</h3>
@@ -116,6 +113,7 @@ function VoterInfoCard(props) {
           className="voter-admin-button mx-2 my-2"
           href={admin.electionRegistrationUrl}
           target="_blank"
+          rel="noreferrer"
         >
           Register to Vote
         </Button>
@@ -125,6 +123,7 @@ function VoterInfoCard(props) {
           className="voter-admin-button mx-2 my-2"
           href={admin.electionRegistrationConfirmationUrl}
           target="_blank"
+          rel="noreferrer"
         >
           Confirm Registration
         </Button>
@@ -134,6 +133,7 @@ function VoterInfoCard(props) {
           className="voter-admin-button mx-2 my-2"
           href={admin.electionInfoUrl}
           target="_blank"
+          rel="noreferrer"
         >
           Election Information
         </Button>
@@ -143,6 +143,7 @@ function VoterInfoCard(props) {
           className="voter-admin-button mx-2 my-2"
           href={admin.absenteeVotingInfoUrl}
           target="_blank"
+          rel="noreferrer"
         >
           Absentee Voting
         </Button>
@@ -152,6 +153,7 @@ function VoterInfoCard(props) {
           className="voter-admin-button mx-2 my-2"
           href={admin.votingLocationFinderUrl}
           target="_blank"
+          rel="noreferrer"
         >
           Find Polling Location
         </Button>
@@ -161,6 +163,7 @@ function VoterInfoCard(props) {
           className="voter-admin-button mx-2 my-2"
           href={admin.ballotInfoUrl}
           target="_blank"
+          rel="noreferrer"
         >
           Ballot Information
         </Button>
