@@ -13,13 +13,12 @@ class UserAuth {
       });
       const parsedRes = await res.json();
 
-      // Temp, get back to this
       if (parsedRes.jwToken) {
         localStorage.setItem("jwToken", parsedRes.jwToken);
-        console.log("Token set", localStorage.jwToken);
+        console.log("Token set.");
         return true;
       } else {
-        console.log("Token parse failed");
+        console.log("Token parse failed.");
         return false;
       }
     } catch (err) {
@@ -38,13 +37,12 @@ class UserAuth {
       });
       const parsedRes = await res.json();
 
-      // Check again later
       if (parsedRes.jwToken) {
         localStorage.setItem("jwToken", parsedRes.jwToken);
-        console.log("Token set", localStorage.jwToken);
+        console.log("Token set.");
         return true;
       } else {
-        console.log("Token parse failed");
+        console.log("Token parse failed.");
         return false;
       }
     } catch (err) {
@@ -61,7 +59,7 @@ class UserAuth {
 
       if (res.status === 200) {
         const parsedRes = await res.json();
-        console.log("Got user data.", parsedRes);
+        console.log("FETCHED USER DATA.", parsedRes);
         return parsedRes;
       } else {
         console.log("Could not refresh user data. Status:", res.status);
@@ -87,7 +85,7 @@ class UserAuth {
       if (res.status === 200) {
         const parsedRes = await res.json();
         localStorage.setItem("jwToken", parsedRes.jwToken);
-        console.log("UPDATED USER. Token set", localStorage.jwToken);
+        console.log("UPDATED USER. Token set.");
         return this.getUser();
       } else {
         console.log("Failed to update user data. Status:", res.status);

@@ -11,8 +11,13 @@ class NoteRep {
 
       if (res.status === 200) {
         const parsedRes = await res.json();
-        console.log("GOT REP NOTES.", parsedRes);
-        return parsedRes;
+        console.log("GOT REP NOTES.", await parsedRes);
+        if (parsedRes.length === 0) {
+          console.log("NO REP NOTES, ARRAY IS EMPTY.");
+          return null;
+        } else {
+          return parsedRes;
+        }
       } else {
         console.log("FAILED TO GET REP NOTES. Status:", res.status);
         return null;

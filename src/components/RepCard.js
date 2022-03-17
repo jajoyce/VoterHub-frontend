@@ -11,8 +11,18 @@ function RepCard(props) {
         <div className="card-body">
           <h3>{rep.name}</h3>
           <h4>{rep.office}</h4>
-          <h6><em><small>District/Level: </small></em>{rep.division}</h6>
-          <h6><em><small>Affiliation: </small></em>{rep.party}</h6>
+          <h6>
+            <em>
+              <small>District/Level: </small>
+            </em>
+            {rep.division}
+          </h6>
+          <h6>
+            <em>
+              <small>Affiliation: </small>
+            </em>
+            {rep.party}
+          </h6>
           <Button className="mt-2 blue-button">More Info</Button>
         </div>
       </Card>

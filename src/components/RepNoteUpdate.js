@@ -1,6 +1,3 @@
-import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
@@ -33,13 +30,12 @@ function RepNoteUpdate(props) {
   const handleDelete = async () => {
     try {
       const notesAfterDelete = await NoteRep.delete({ id: note.id });
-      if (notesAfterDelete) {
-        console.log(notesAfterDelete);
-        setRepNotes(notesAfterDelete);
-        setShowForm(false);
-      } else {
-        console.log("handleDelete could not get updated notes");
-      }
+      // TO DO: handle empty array after deleting the last note.
+      // TO DO: also rerendering after deleting the only note on that page.
+      // Just fixed both I think, but double check
+      console.log(notesAfterDelete);
+      setRepNotes(notesAfterDelete);
+      setShowForm(false);
     } catch (err) {
       console.log("handleDelete failed to delete note", err);
     }
