@@ -25,9 +25,7 @@ function VoterInfo() {
   useEffect(() => getVoterInfoData(), [address]);
 
   const loaded = () => {
-    return (
-      <VoterInfoCard voterInfo={voterInfo}/>
-    );
+    return <VoterInfoCard voterInfo={voterInfo} />;
   };
 
   return (

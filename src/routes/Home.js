@@ -1,7 +1,5 @@
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { useOutletContext } from "react-router";
 import { useSetRecoilState } from "recoil";
 import AddressSearch from "../components/AddressSearch";
