@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useOutletContext } from "react-router";
-import { NavLink } from "react-bootstrap";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import UserAuth from "../models/UserAuth";
 
@@ -127,7 +126,12 @@ function UserUpdate() {
             <Button type="submit" className="mt-3">
               Update Account
             </Button>
-            <Button as={Link} to="/representatives" variant="secondary" className="mt-3 mx-3">
+            <Button
+              as={Link}
+              to="/representatives"
+              variant="secondary"
+              className="mt-3 mx-3"
+            >
               Cancel
             </Button>
             <br />
