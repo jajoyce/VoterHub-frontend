@@ -4,7 +4,6 @@ import Button from "react-bootstrap/Button";
 
 function VoterInfoCard(props) {
   const voterInfo = props.voterInfo;
-  console.log("VOTERINFO CARD", voterInfo);
 
   const admin = voterInfo.state[0].electionAdministrationBody;
 
