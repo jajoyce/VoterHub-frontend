@@ -27,6 +27,30 @@ class NoteInfo {
       return null;
     }
   };
+
+  static create = async (formData) => {
+    try {
+      const res = await fetch(noteInfoURL, {
+        method: "POST",
+        headers: {
+          jwToken: localStorage.jwToken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.status === 201) {
+        console.log("INFO NOTE CREATED");
+        return this.getAll();
+      } else {
+        console.log("FAILED TO CREATE INFO NOTE. Status:", res.status);
+        return null;
+      }
+    } catch (err) {
+      console.log("ERROR CREATING INFO NOTE:", err);
+      return null;
+    }
+  };
 }
 
 export default NoteInfo;
