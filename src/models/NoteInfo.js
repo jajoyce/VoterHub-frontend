@@ -51,6 +51,29 @@ class NoteInfo {
       return null;
     }
   };
+
+  static update = async (formData) => {
+    try {
+      const res = await fetch(noteInfoURL, {
+        method: "PUT",
+        headers: {
+          jwToken: localStorage.jwToken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (res.status === 200) {
+        console.log("UPDATED INFO NOTE.");
+        return this.getAll();
+      } else {
+        console.log("FAILED TO UPDATE INFO NOTE. Status:", res.status);
+        return null;
+      }
+    } catch (err) {
+      console.log("ERROR UPDATING INFO NOTE:", err);
+      return null;
+    }
+  };
 }
 
 export default NoteInfo;
