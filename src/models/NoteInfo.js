@@ -74,6 +74,29 @@ class NoteInfo {
       return null;
     }
   };
+
+  static delete = async (formData) => {
+    try {
+      const res = await fetch(noteInfoURL, {
+        method: "DELETE",
+        headers: {
+          jwToken: localStorage.jwToken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (res.status === 200) {
+        console.log("DELETED INFO NOTE.");
+        return this.getAll();
+      } else {
+        console.log("FAILED TO DELETE INFO NOTE. Status:", res.status);
+        return null;
+      }
+    } catch (err) {
+      console.log("ERROR DELETING INFO NOTE:", err);
+      return null;
+    }
+  };
 }
 
 export default NoteInfo;
