@@ -19,7 +19,7 @@ class NoteVoter {
           return parsedRes;
         }
       } else {
-        console.log("FAILED TO GET VOTER NOTES. Status:", res.status);
+        console.log("FAILED TO GET VOTER NOTES. Status:", res.status, "-- Res:", res);
         return null;
       }
     } catch (err) {
