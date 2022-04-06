@@ -2,17 +2,20 @@ import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router";
 import Container from "react-bootstrap/Container";
 import Collapse from "react-bootstrap/Collapse";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import VoterInfoCard from "../components/VoterInfoCard";
 import AddressSearch from "../components/AddressSearch";
+import NoteVoter from "../models/NoteVoter";
 
 function VoterInfo() {
-  const { addressState, serverURL } = useOutletContext();
+  const { userState, addressState, serverURL } = useOutletContext();
+  const user = useRecoilValue(userState);
   const [address, setAddress] = useRecoilState(addressState);
   const fetchVoterInfoURL = serverURL + "/civicAPI/voterinfo/" + address;
   const [voterInfo, setVoterInfo] = useState(null);
   const [cleanAddress, setCleanAddress] = useState(null);
   const [searchShow, setSearchShow] = useState(false);
+  const [notes, setNotes] = useState(null);
 
   const getVoterInfoData = async () => {
     const response = await fetch(fetchVoterInfoURL);
@@ -22,7 +25,21 @@ function VoterInfo() {
     setVoterInfo(data);
   };
 
+  const getVoterNotes = async () => {
+    if (user) {
+      console.log("User logged in, fetching voter notes.");
+      const voterNotes = await NoteVoter.getAll();
+      if (voterNotes) {
+        console.log("Get voter notes.");
+        setNotes(voterNotes);
+      } else {
+        console.log("No voter notes received.");
+      }
+    }
+  };
+
   useEffect(() => getVoterInfoData(), [address]);
+  useEffect(() => getVoterNotes(), [user]);
 
   const loaded = () => {
     return <VoterInfoCard voterInfo={voterInfo} />;
@@ -62,6 +79,11 @@ function VoterInfo() {
             {voterInfo ? loaded() : <h1>Loading...</h1>}
           </div>
         </div>
+        <h3 className="mt-4">My Personal Notes</h3>
+        <h5 className="mb-3">
+          <em>Save private notes-to-self for your reference:</em>
+        </h5>
+        {notes ? <h3>Got Voter Notes, they go here</h3> : null}
       </Container>
     </Container>
   );
