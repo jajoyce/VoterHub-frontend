@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router";
 import Container from "react-bootstrap/Container";
 import Collapse from "react-bootstrap/Collapse";
+import Button from "react-bootstrap/Button";
 import { useRecoilState, useRecoilValue } from "recoil";
 import VoterInfoCard from "../components/VoterInfoCard";
 import AddressSearch from "../components/AddressSearch";
@@ -17,6 +18,7 @@ function VoterInfo() {
   const [cleanAddress, setCleanAddress] = useState(null);
   const [searchShow, setSearchShow] = useState(false);
   const [voterNotes, setVoterNotes] = useState(null);
+  const [showNoteAdd, setShowNoteAdd] = useState(false);
 
   const getVoterInfoData = async () => {
     const response = await fetch(fetchVoterInfoURL);
@@ -93,6 +95,15 @@ function VoterInfo() {
               />
             ))
           : null}
+        {showNoteAdd ? (
+          <div>VoterNoteAdd</div>
+        ) : (
+          <Container className="mt-4">
+            <Button variant="success" onClick={() => setShowNoteAdd(true)}>
+              Add a New Note
+            </Button>
+          </Container>
+        )}
       </Container>
     </Container>
   );
