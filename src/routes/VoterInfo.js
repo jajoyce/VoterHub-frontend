@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router";
 import Container from "react-bootstrap/Container";
 import Collapse from "react-bootstrap/Collapse";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import VoterInfoCard from "../components/VoterInfoCard";
 import AddressSearch from "../components/AddressSearch";
+import NoteVoter from "../models/NoteVoter";
 
 function VoterInfo() {
-  const { addressState, serverURL } = useOutletContext();
+  const { userState, addressState, serverURL } = useOutletContext();
+  const user = useRecoilValue(userState);
   const [address, setAddress] = useRecoilState(addressState);
   const fetchVoterInfoURL = serverURL + "/civicAPI/voterinfo/" + address;
   const [voterInfo, setVoterInfo] = useState(null);
@@ -62,6 +64,10 @@ function VoterInfo() {
             {voterInfo ? loaded() : <h1>Loading...</h1>}
           </div>
         </div>
+        <h3 className="mt-4">My Personal Notes</h3>
+        <h5 className="mb-3">
+          <em>Save private notes-to-self for your reference:</em>
+        </h5>
       </Container>
     </Container>
   );
