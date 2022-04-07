@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
+import VoterNoteUpdate from "./VoterNoteUpdate";
 
 function VoterNoteCard(props) {
   const { note, setVoterNotes } = props;
@@ -26,7 +27,15 @@ function VoterNoteCard(props) {
 
   return (
     <Card className="voter-note-card mt-3">
-      {showUpdate ? <div>VoterNoteUpdate</div> : <RenderNote />}
+      {showUpdate ? (
+        <VoterNoteUpdate
+          note={note}
+          setVoterNotes={setVoterNotes}
+          setShowUpdate={setShowUpdate}
+        />
+      ) : (
+        <RenderNote />
+      )}
     </Card>
   );
 }
