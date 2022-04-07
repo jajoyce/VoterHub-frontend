@@ -7,6 +7,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import VoterInfoCard from "../components/VoterInfoCard";
 import AddressSearch from "../components/AddressSearch";
 import VoterNoteCard from "../components/VoterNoteCard";
+import VoterNoteAdd from "../components/VoterNoteAdd";
 import NoteVoter from "../models/NoteVoter";
 
 function VoterInfo() {
@@ -82,8 +83,8 @@ function VoterInfo() {
             )}
           </div>
         </div>
-        <h3 className="mt-4">My Personal Notes</h3>
-        <h5 className="mb-3">
+        <h3 className="mt-3">My Personal Notes</h3>
+        <h5 className="mb-4">
           <em>Save private notes-to-self for your reference:</em>
         </h5>
         {voterNotes
@@ -96,9 +97,13 @@ function VoterInfo() {
             ))
           : null}
         {showNoteAdd ? (
-          <div>VoterNoteAdd</div>
+          <VoterNoteAdd
+            user={user}
+            setVoterNotes={setVoterNotes}
+            setShowNoteAdd={setShowNoteAdd}
+          />
         ) : (
-          <Container className="mt-4">
+          <Container className="my-4">
             <Button variant="success" onClick={() => setShowNoteAdd(true)}>
               Add a New Note
             </Button>
