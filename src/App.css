@@ -5,7 +5,7 @@
 }
 
 .full-height {
-  min-height: calc(100vh - 132px);
+  min-height: calc(100vh - 180px);
 }
 
 a {
@@ -164,9 +164,9 @@ a:hover {
 }
 
 .voter-info-card {
-  margin: 12px auto 20px;
+  margin: 12px auto;
   padding: 20px;
-  max-width: 80%;
+  max-width: 90%;
   background-color: #f8f6ff;
   border: 2px solid #668;
   border-radius: 10px;
@@ -185,7 +185,8 @@ a:hover {
   background-color: #f4f4ff;
 }
 
-.rep-note-card {
+.rep-note-card,
+.voter-note-card {
   max-width: 700px;
   margin: 10px auto;
   padding: 20px;
@@ -204,7 +205,8 @@ a:hover {
 }
 
 .or-span {
-  font-size: large;
-  padding: 10px;
-  vertical-align: bottom;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 500;
+  vertical-align: middle;
 }

@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router";
 import Container from "react-bootstrap/Container";
 import Collapse from "react-bootstrap/Collapse";
+import Button from "react-bootstrap/Button";
 import { useRecoilState, useRecoilValue } from "recoil";
 import VoterInfoCard from "../components/VoterInfoCard";
 import AddressSearch from "../components/AddressSearch";
+import VoterNoteCard from "../components/VoterNoteCard";
+import VoterNoteAdd from "../components/VoterNoteAdd";
 import NoteVoter from "../models/NoteVoter";
 
 function VoterInfo() {
@@ -15,7 +18,8 @@ function VoterInfo() {
   const [voterInfo, setVoterInfo] = useState(null);
   const [cleanAddress, setCleanAddress] = useState(null);
   const [searchShow, setSearchShow] = useState(false);
-  const [notes, setNotes] = useState(null);
+  const [voterNotes, setVoterNotes] = useState(null);
+  const [showNoteAdd, setShowNoteAdd] = useState(false);
 
   const getVoterInfoData = async () => {
     const response = await fetch(fetchVoterInfoURL);
@@ -28,10 +32,10 @@ function VoterInfo() {
   const getVoterNotes = async () => {
     if (user) {
       console.log("User logged in, fetching voter notes.");
-      const voterNotes = await NoteVoter.getAll();
-      if (voterNotes) {
-        console.log("Get voter notes.");
-        setNotes(voterNotes);
+      const gotVoterNotes = await NoteVoter.getAll();
+      if (gotVoterNotes) {
+        console.log("Got voter notes.");
+        setVoterNotes(gotVoterNotes);
       } else {
         console.log("No voter notes received.");
       }
@@ -40,10 +44,6 @@ function VoterInfo() {
 
   useEffect(() => getVoterInfoData(), [address]);
   useEffect(() => getVoterNotes(), [user]);
-
-  const loaded = () => {
-    return <VoterInfoCard voterInfo={voterInfo} />;
-  };
 
   return (
     <Container className="full-height">
@@ -76,14 +76,39 @@ function VoterInfo() {
         </Collapse>
         <div className="m-0 p-0">
           <div className="py-1">
-            {voterInfo ? loaded() : <h1>Loading...</h1>}
+            {voterInfo ? (
+              <VoterInfoCard voterInfo={voterInfo} />
+            ) : (
+              <h1>Loading...</h1>
+            )}
           </div>
         </div>
-        <h3 className="mt-4">My Personal Notes</h3>
-        <h5 className="mb-3">
+        <h3 className="mt-3">My Personal Notes</h3>
+        <h5 className="mb-4">
           <em>Save private notes-to-self for your reference:</em>
         </h5>
-        {notes ? <h3>Got Voter Notes, they go here</h3> : null}
+        {voterNotes
+          ? voterNotes.map((note, index) => (
+              <VoterNoteCard
+                key={index}
+                note={note}
+                setVoterNotes={setVoterNotes}
+              />
+            ))
+          : null}
+        {showNoteAdd ? (
+          <VoterNoteAdd
+            user={user}
+            setVoterNotes={setVoterNotes}
+            setShowNoteAdd={setShowNoteAdd}
+          />
+        ) : (
+          <Container className="my-4">
+            <Button variant="success" onClick={() => setShowNoteAdd(true)}>
+              Add a New Note
+            </Button>
+          </Container>
+        )}
       </Container>
     </Container>
   );
