@@ -2,6 +2,7 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import VoterNoteCreate from "./VoterNoteCreate";
 
 function VoterNoteAdd(props) {
   const { user, setVoterNotes, setShowNoteAdd } = props;
@@ -10,7 +11,10 @@ function VoterNoteAdd(props) {
     <Container className="my-3">
       <Card className="voter-note-card">
         {user ? (
-          <div>VoterNoteCreate</div>
+          <VoterNoteCreate
+            setVoterNotes={setVoterNotes}
+            setShowNoteAdd={setShowNoteAdd}
+          />
         ) : (
           <div>
             <Button className="blue-button mt-3" as={Link} to="../../sign-up">
