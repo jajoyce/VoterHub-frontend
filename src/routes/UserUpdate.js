@@ -3,6 +3,8 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useOutletContext } from "react-router";
@@ -26,7 +28,7 @@ function UserUpdate() {
     let isValid = true;
     if (form["password"] !== form["confirmPassword"]) {
       isValid = false;
-      setErrors({...errors, confirmPassword: "Passwords don't match."});
+      setErrors({ ...errors, confirmPassword: "Passwords don't match." });
     }
     return isValid;
   };
@@ -84,27 +86,35 @@ function UserUpdate() {
                 required
               />
             </FloatingLabel>
-            <FloatingLabel label="Password *" className="mb-3">
-              <Form.Control
-                type="password"
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                placeholder="********"
-                required
-              />
-            </FloatingLabel>
-            <Form.Text className="text-danger">{errors.confirmPassword}</Form.Text>
-            <FloatingLabel label="Confirm Password *" className="mb-3">
-              <Form.Control
-                type="password"
-                name="confirmPassword"
-                value={form.confirmPassword}
-                onChange={handleChange}
-                placeholder="********"
-                required
-              />
-            </FloatingLabel>
+            <Form.Text className="text-danger">
+              {errors.confirmPassword}
+            </Form.Text>
+            <Row>
+              <Col sm>
+                <FloatingLabel label="Password *" className="mb-3">
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    value={form.password}
+                    onChange={handleChange}
+                    placeholder="********"
+                    required
+                  />
+                </FloatingLabel>
+              </Col>
+              <Col sm>
+                <FloatingLabel label="Confirm Password *" className="mb-3">
+                  <Form.Control
+                    type="password"
+                    name="confirmPassword"
+                    value={form.confirmPassword}
+                    onChange={handleChange}
+                    placeholder="********"
+                    required
+                  />
+                </FloatingLabel>
+              </Col>
+            </Row>
             <FloatingLabel label="First Name *" className="mb-3">
               <Form.Control
                 type="text"
