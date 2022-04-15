@@ -20,6 +20,17 @@ function UserUpdate() {
     password: "",
   });
 
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    let isValid = true;
+
+    if (form["password"] !== form["confirmPassword"]) {
+      isValid = false;
+      errors["confirmPassword"] = "Passwords don't match."
+    }
+  }
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
