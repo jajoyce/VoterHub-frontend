@@ -3,6 +3,8 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useOutletContext } from "react-router";
@@ -20,27 +22,51 @@ function UserUpdate() {
     password: "",
   });
 
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    let isValid = true;
+    if (form["password"] !== form["confirmPassword"]) {
+      isValid = false;
+      setErrors({ ...errors, confirmPassword: "Passwords don't match." });
+    }
+    return isValid;
+  };
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const updatedUser = await UserAuth.update(form);
-      if (updatedUser) {
-        console.log("UPDATED USER");
-        setUser(updatedUser);
-        if (updatedUser.address) {
-          setAddress(updatedUser.address);
+
+    if (validate()) {
+      try {
+        const formUpdate = {
+          username: form.username,
+          password: form.password,
+          firstName: form.firstName,
+          lastName: form.lastName,
+          address: form.address,
+          registeredVoter: form.registeredVoter,
+        };
+
+        const updatedUser = await UserAuth.update(formUpdate);
+
+        if (updatedUser) {
+          console.log("UPDATED USER");
+          setUser(updatedUser);
+          if (updatedUser.address) {
+            setAddress(updatedUser.address);
+          }
+          navigate("/representatives");
+        } else {
+          console.log("User Update FAILED");
+          navigate("/");
         }
-        navigate("/representatives");
-      } else {
-        console.log("User Update FAILED");
-        navigate("/");
+      } catch (err) {
+        console.log("Failed to fetch user data.", err);
       }
-    } catch (err) {
-      console.log("Failed to fetch user data.", err);
     }
   };
 
@@ -60,16 +86,35 @@ function UserUpdate() {
                 required
               />
             </FloatingLabel>
-            <FloatingLabel label="Password *" className="mb-3">
-              <Form.Control
-                type="password"
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                placeholder="********"
-                required
-              />
-            </FloatingLabel>
+            <Form.Text className="text-danger">
+              {errors.confirmPassword}
+            </Form.Text>
+            <Row>
+              <Col sm>
+                <FloatingLabel label="Password *" className="mb-3">
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    value={form.password}
+                    onChange={handleChange}
+                    placeholder="********"
+                    required
+                  />
+                </FloatingLabel>
+              </Col>
+              <Col sm>
+                <FloatingLabel label="Confirm Password *" className="mb-3">
+                  <Form.Control
+                    type="password"
+                    name="confirmPassword"
+                    value={form.confirmPassword}
+                    onChange={handleChange}
+                    placeholder="********"
+                    required
+                  />
+                </FloatingLabel>
+              </Col>
+            </Row>
             <FloatingLabel label="First Name *" className="mb-3">
               <Form.Control
                 type="text"
