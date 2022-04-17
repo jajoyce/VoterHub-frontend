@@ -115,25 +115,31 @@ function UserUpdate() {
                 </FloatingLabel>
               </Col>
             </Row>
-            <FloatingLabel label="First Name *" className="mb-3">
-              <Form.Control
-                type="text"
-                name="firstName"
-                value={form.firstName}
-                onChange={handleChange}
-                placeholder="Jane"
-                required
-              />
-            </FloatingLabel>
-            <FloatingLabel label="Last Name" className="mb-3">
-              <Form.Control
-                type="text"
-                name="lastName"
-                value={form.lastName}
-                onChange={handleChange}
-                placeholder="Doe"
-              />
-            </FloatingLabel>
+            <Row>
+              <Col sm>
+                <FloatingLabel label="First Name *" className="mb-3">
+                  <Form.Control
+                    type="text"
+                    name="firstName"
+                    value={form.firstName}
+                    onChange={handleChange}
+                    placeholder="Jane"
+                    required
+                  />
+                </FloatingLabel>
+              </Col>
+              <Col sm>
+                <FloatingLabel label="Last Name" className="mb-3">
+                  <Form.Control
+                    type="text"
+                    name="lastName"
+                    value={form.lastName}
+                    onChange={handleChange}
+                    placeholder="Doe"
+                  />
+                </FloatingLabel>
+              </Col>
+            </Row>
             <FloatingLabel label="Address" className="mb-3">
               <Form.Control
                 type="text"
