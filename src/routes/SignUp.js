@@ -90,16 +90,38 @@ function SignUp() {
                 required
               />
             </FloatingLabel>
-            <FloatingLabel label="Password *" className="mb-3">
-              <Form.Control
-                type="password"
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                placeholder="********"
-                required
-              />
-            </FloatingLabel>
+            <Form.Group className="mb-3">
+              <Row>
+                <Col sm>
+                  <FloatingLabel label="Password *">
+                    <Form.Control
+                      type="password"
+                      name="password"
+                      value={form.password}
+                      onChange={handleChange}
+                      placeholder="********"
+                      minLength={8}
+                      required
+                    />
+                  </FloatingLabel>
+                </Col>
+                <Col sm>
+                  <FloatingLabel label="Confirm Password *">
+                    <Form.Control
+                      type="password"
+                      name="confirmPassword"
+                      value={form.confirmPassword}
+                      onChange={handleChange}
+                      placeholder="********"
+                      required
+                    />
+                  </FloatingLabel>
+                </Col>
+              </Row>
+              <Form.Text className="text-danger mt-0 pt-0">
+                {errors.password}
+              </Form.Text>
+            </Form.Group>
             <Row>
               <Col sm>
                 <FloatingLabel label="First Name *" className="mb-3">
