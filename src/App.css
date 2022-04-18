@@ -51,6 +51,19 @@ a:hover {
   margin: 0 20px;
 }
 
+.nav-item.dropdown {
+  margin: 0 20px;
+}
+
+#nav-dropdown {
+  margin: 0;
+}
+
+.nav-item > .dropdown-menu {
+  max-width: fit-content;
+  margin: 0 auto;
+}
+
 .footer {
   height: 66px;
   color: #eef;

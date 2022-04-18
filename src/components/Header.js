@@ -66,9 +66,9 @@ function Header(props) {
           />
           <div className="header-home-text">VoterHub</div>
         </Navbar.Brand>
-        <Nav>
-          <Navbar.Toggle aria-controls="navbar-nav" />
-          <Navbar.Collapse id="navbar-nav">
+        <Navbar.Toggle aria-controls="navbar-nav" />
+        <Navbar.Collapse id="navbar-nav">
+          <Nav fill className="ms-auto">
             <Nav.Link as={NavLink} to="/representatives">
               Who Represents Me
             </Nav.Link>
@@ -76,8 +76,8 @@ function Header(props) {
               My Voter Info
             </Nav.Link>
             {userNav}
-          </Navbar.Collapse>
-        </Nav>
+          </Nav>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );

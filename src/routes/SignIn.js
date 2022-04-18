@@ -20,6 +20,8 @@ function SignIn() {
     password: "",
   });
 
+  const [error, setError] = useState("");
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -36,12 +38,12 @@ function SignIn() {
         }
         navigate("/representatives");
       } catch (err) {
+        setError("Login failed. Please try again");
         console.log("Failed to fetch user data.", err);
-        setUser(null);
       }
     } else {
+      setError("Invalid credentials. Please try again.");
       console.log("LOGIN FAILED");
-      navigate("/");
     }
   };
 
@@ -73,7 +75,8 @@ function SignIn() {
                 required
               />
             </FloatingLabel>
-
+            <Form.Label className="text-danger">{error}</Form.Label>
+            <br />
             <Button type="submit" className="my-3">
               Sign In
             </Button>
