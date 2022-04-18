@@ -90,40 +90,38 @@ function SignUp() {
                 required
               />
             </FloatingLabel>
-            <Form.Group className="mb-3">
-              <Row>
-                <Col sm>
-                  <FloatingLabel label="Password *">
-                    <Form.Control
-                      type="password"
-                      name="password"
-                      value={form.password}
-                      onChange={handleChange}
-                      placeholder="********"
-                      minLength={8}
-                      required
-                    />
-                  </FloatingLabel>
-                </Col>
-                <Col sm>
-                  <FloatingLabel label="Confirm Password *">
-                    <Form.Control
-                      type="password"
-                      name="confirmPassword"
-                      value={form.confirmPassword}
-                      onChange={handleChange}
-                      placeholder="********"
-                      required
-                    />
-                  </FloatingLabel>
-                </Col>
-              </Row>
-              <Form.Text className="text-danger mt-0 pt-0">
+            <Row className="mb-3">
+              <Col md>
+                <FloatingLabel label="Password *">
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    value={form.password}
+                    onChange={handleChange}
+                    placeholder="********"
+                    minLength={8}
+                    required
+                  />
+                </FloatingLabel>
+              </Col>
+              <Col md>
+                <FloatingLabel label="Confirm Password *" className="mt-3 mt-md-0">
+                  <Form.Control
+                    type="password"
+                    name="confirmPassword"
+                    value={form.confirmPassword}
+                    onChange={handleChange}
+                    placeholder="********"
+                    required
+                  />
+                </FloatingLabel>
+              </Col>
+              <Form.Label className="text-danger m-0 p-0">
                 {errors.password}
-              </Form.Text>
-            </Form.Group>
+              </Form.Label>
+            </Row>
             <Row>
-              <Col sm>
+              <Col md>
                 <FloatingLabel label="First Name *" className="mb-3">
                   <Form.Control
                     type="text"
@@ -135,7 +133,7 @@ function SignUp() {
                   />
                 </FloatingLabel>
               </Col>
-              <Col sm>
+              <Col md>
                 <FloatingLabel label="Last Name" className="mb-3">
                   <Form.Control
                     type="text"

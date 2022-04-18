@@ -47,6 +47,7 @@ class UserAuth {
       }
     } catch (err) {
       console.log("Login failed:", err);
+      return false;
     }
   };
 
