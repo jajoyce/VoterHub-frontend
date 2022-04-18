@@ -20,11 +20,23 @@ function SignUp() {
   const [form, setForm] = useState({
     username: "",
     password: "",
+    confirmPassword: "",
     firstName: "",
     lastName: null,
     address: null,
     registeredVoter: null,
   });
+
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    let isValid = true;
+    if (form.password !== form.confirmPassword) {
+      isValid = false;
+      setErrors({ ...errors, password: "Passwords don't match." });
+    }
+    return isValid;
+  };
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -32,22 +44,33 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (await UserAuth.register(form)) {
-      console.log("SIGNED UP");
-      try {
-        const userData = await UserAuth.getUser();
-        setUser(userData);
-        if (userData.address) {
-          setAddress(userData.address);
+
+    if (validate()) {
+      const formRegister = {
+        username: form.username,
+        password: form.password,
+        firstName: form.firstName,
+        lastName: form.lastName,
+        address: form.address,
+        registeredVoter: form.registeredVoter,
+      };
+
+      if (await UserAuth.register(formRegister)) {
+        console.log("SIGNED UP");
+        try {
+          const userData = await UserAuth.getUser();
+          setUser(userData);
+          if (userData.address) {
+            setAddress(userData.address);
+          }
+          navigate("/representatives");
+        } catch (err) {
+          console.log("Failed to fetch user data.", err);
+          setUser(null);
         }
-        navigate("/representatives");
-      } catch (err) {
-        console.log("Failed to fetch user data.", err);
-        setUser(null);
+      } else {
+        console.log("SIGNUP FAILED");
       }
-    } else {
-      console.log("SIGNUP FAILED");
-      navigate("/");
     }
   };
 
