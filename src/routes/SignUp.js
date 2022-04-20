@@ -105,7 +105,10 @@ function SignUp() {
                 </FloatingLabel>
               </Col>
               <Col md>
-                <FloatingLabel label="Confirm Password *" className="mt-3 mt-md-0">
+                <FloatingLabel
+                  label="Confirm Password *"
+                  className="mt-3 mt-md-0"
+                >
                   <Form.Control
                     type="password"
                     name="confirmPassword"
@@ -116,7 +119,7 @@ function SignUp() {
                   />
                 </FloatingLabel>
               </Col>
-              <Form.Label className="text-danger m-0 p-0">
+              <Form.Label className="text-danger m-0">
                 {errors.password}
               </Form.Label>
             </Row>

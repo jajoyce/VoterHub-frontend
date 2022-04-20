@@ -20,15 +20,16 @@ function UserUpdate() {
   const [form, setForm] = useState({
     ...user,
     password: "",
+    confirmPassword: "",
   });
 
   const [errors, setErrors] = useState({});
 
   const validate = () => {
     let isValid = true;
-    if (form["password"] !== form["confirmPassword"]) {
+    if (form.password !== form.confirmPassword) {
       isValid = false;
-      setErrors({ ...errors, confirmPassword: "Passwords don't match." });
+      setErrors({ ...errors, password: "Passwords don't match." });
     }
     return isValid;
   };
@@ -62,10 +63,15 @@ function UserUpdate() {
           navigate("/representatives");
         } else {
           console.log("User Update FAILED");
-          navigate("/");
+          setErrors({
+            submit: "Failed to update user account. Please try again.",
+          });
         }
       } catch (err) {
         console.log("Failed to fetch user data.", err);
+        setErrors({
+          submit: "Failed to update user account. Please try again.",
+        });
       }
     }
   };
@@ -86,12 +92,9 @@ function UserUpdate() {
                 required
               />
             </FloatingLabel>
-            <Form.Text className="text-danger">
-              {errors.confirmPassword}
-            </Form.Text>
-            <Row>
-              <Col sm>
-                <FloatingLabel label="Password *" className="mb-3">
+            <Row className="mb-3">
+              <Col md>
+                <FloatingLabel label="Password *">
                   <Form.Control
                     type="password"
                     name="password"
@@ -102,8 +105,11 @@ function UserUpdate() {
                   />
                 </FloatingLabel>
               </Col>
-              <Col sm>
-                <FloatingLabel label="Confirm Password *" className="mb-3">
+              <Col md>
+                <FloatingLabel
+                  label="Confirm Password *"
+                  className="mt-3 mt-md-0"
+                >
                   <Form.Control
                     type="password"
                     name="confirmPassword"
@@ -114,9 +120,12 @@ function UserUpdate() {
                   />
                 </FloatingLabel>
               </Col>
+              <Form.Label className="text-danger m-0">
+                {errors.password}
+              </Form.Label>
             </Row>
             <Row>
-              <Col sm>
+              <Col md>
                 <FloatingLabel label="First Name *" className="mb-3">
                   <Form.Control
                     type="text"
@@ -128,7 +137,7 @@ function UserUpdate() {
                   />
                 </FloatingLabel>
               </Col>
-              <Col sm>
+              <Col md>
                 <FloatingLabel label="Last Name" className="mb-3">
                   <Form.Control
                     type="text"
