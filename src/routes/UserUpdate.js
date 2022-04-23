@@ -78,7 +78,7 @@ function UserUpdate() {
 
   return (
     <Container className="full-height">
-      <Container className="mt-0 pt-4 mb-5">
+      <Container className="mt-0 pt-5 mb-5">
         <Card className="user-update-card">
           <h2>Update Account</h2>
           <Form onSubmit={handleSubmit} className="mt-3 mb-2">
@@ -183,6 +183,8 @@ function UserUpdate() {
                 (Dont't worry, we can help with that!)
               </Form.Text>
             </Form.Group>
+            <Form.Label className="text-danger">{errors.submit}</Form.Label>
+            <br />
             <Button type="submit" className="mt-3">
               Update Account
             </Button>
@@ -199,7 +201,7 @@ function UserUpdate() {
               as={Link}
               to="/account-delete"
               variant="danger"
-              className="mt-5 mx-3"
+              className="mt-5 mx-3 btn-sm"
             >
               Delete Account
             </Button>

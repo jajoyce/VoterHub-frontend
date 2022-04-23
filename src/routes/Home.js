@@ -15,7 +15,7 @@ function Home() {
         <h3>
           Stay informed on <em>your</em> government.
         </h3>
-        <Container className="my-5 px-3">
+        <Container className="my-5 px-0">
           <AddressSearch setAddress={setAddress} />
         </Container>
         <Card className="home-card">
