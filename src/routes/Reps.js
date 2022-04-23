@@ -49,7 +49,7 @@ function Reps() {
         </div>
         <Collapse in={searchShow}>
           <div className="m-0 p-0">
-            <div className="py-1 px-4">
+            <div className="py-1 px-0">
               <AddressSearch
                 setAddress={setAddress}
                 setSearchShow={setSearchShow}

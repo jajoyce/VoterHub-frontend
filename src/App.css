@@ -75,9 +75,14 @@ a:hover {
   margin: 0 auto;
 }
 
+
+.address-search {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
 .search-bar {
   margin: 0 auto;
-  width: 90%;
 }
 
 .search-label {
@@ -113,11 +118,6 @@ a:hover {
   border-bottom: 2px dotted #44b;
   color: #44b;
   cursor: pointer;
-}
-
-.address-search {
-  max-width: 900px;
-  margin: 0 auto;
 }
 
 .rep-card {
