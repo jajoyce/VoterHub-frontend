@@ -27,7 +27,21 @@ function Header(props) {
         setUser(null);
       }
     }
-    if (localStorage.getItem("jwToken")) getUser();
+    // To wake up Heroku backend, speed first page load:
+    async function pingBackend() {
+      try {
+        const loginRes = await UserAuth.login({ username: null });
+        console.log("Backend responded:", loginRes);
+      } catch (err) {
+        console.log("Ping backend error:", err);
+      }
+    }
+
+    if (localStorage.getItem("jwToken")) {
+      getUser();
+    } else {
+      pingBackend();
+    }
   }, []);
 
   function logout() {
