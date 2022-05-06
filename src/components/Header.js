@@ -10,8 +10,11 @@ import UserAuth from "../models/UserAuth";
 
 function Header(props) {
   const [user, setUser] = useRecoilState(props.userState);
-  const setAddress = useSetRecoilState(props.addressState);
+  const [address, setAddress] = useRecoilState(props.addressState);
+  // const setAddress = useSetRecoilState(props.addressState);
   const resetAddress = useResetRecoilState(props.addressState);
+  const serverURL = props.serverURL;
+  const fetchRepsURL = serverURL + "/civicAPI/reps/" + address;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,8 +33,10 @@ function Header(props) {
     // To wake up Heroku backend, speed first page load:
     async function pingBackend() {
       try {
-        const loginRes = await UserAuth.login({ username: null });
-        console.log("Backend responded:", loginRes);
+        const testRepsRes = await fetch(fetchRepsURL);
+        const testReps = await testRepsRes.json();
+        // const loginRes = await UserAuth.login({ username: null });
+        console.log("Backend responded. Test reps:", testReps);
       } catch (err) {
         console.log("Ping backend error:", err);
       }
