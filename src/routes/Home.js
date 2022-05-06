@@ -19,11 +19,11 @@ function Home() {
           <AddressSearch setAddress={setAddress} />
         </Container>
         <Card className="home-card">
-          <h3>Just enter your address to view: </h3>
+          <h3>Just enter your U.S. address to find: </h3>
           <ul className="home-list">
-            <li>Your elected officials at every level of government</li>
-            <li>Your polling location</li>
-            <li>Upcoming elections</li>
+            <li>Your elected representatives at every level of government, from federal to local</li>
+            <li>Your local election officials and polling locations</li>
+            <li>Voter information, registration, and resources</li>
             <li>And more!</li>
           </ul>
         </Card>
