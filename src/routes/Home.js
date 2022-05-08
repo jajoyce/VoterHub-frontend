@@ -21,10 +21,10 @@ function Home() {
         <Card className="home-card">
           <h3>Just enter your U.S. address to find: </h3>
           <ul className="home-list">
-            <li>Your elected representatives at every level of government, from federal to local</li>
-            <li>Your local election officials and polling locations</li>
-            <li>Voter information, registration, and resources</li>
-            <li>And more!</li>
+            <li>&#10146; Your elected representatives at every level of government, from federal to local</li>
+            <li>&#10146; Your local election officials and polling locations</li>
+            <li>&#10146; Voter information, registration, and resources</li>
+            <li>&#10146; And more!</li>
           </ul>
         </Card>
         <Container>
