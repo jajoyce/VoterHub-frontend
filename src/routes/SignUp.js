@@ -67,6 +67,7 @@ function SignUp() {
         } catch (err) {
           setErrors({
             ...errors,
+            password: null,
             submit: "Failed to sign in new user. Please try again.",
           });
           console.log("Failed to fetch user data.", err);
@@ -75,6 +76,7 @@ function SignUp() {
       } else {
         setErrors({
           ...errors,
+          password: null,
           submit: "New user registration failed. Please try again.",
         });
         console.log("SIGNUP FAILED");
