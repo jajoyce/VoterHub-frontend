@@ -65,10 +65,18 @@ function SignUp() {
           }
           navigate("/representatives");
         } catch (err) {
+          setErrors({
+            ...errors,
+            submit: "Failed to sign in new user. Please try again.",
+          });
           console.log("Failed to fetch user data.", err);
           setUser(null);
         }
       } else {
+        setErrors({
+          ...errors,
+          submit: "New user registration failed. Please try again.",
+        });
         console.log("SIGNUP FAILED");
       }
     }
@@ -182,6 +190,15 @@ function SignUp() {
                 (Dont't worry, we can help with that!)
               </Form.Text>
             </Form.Group>
+            {errors.submit ? (
+              <>
+                <Form.Label className="text-danger m-0">
+                  {errors.submit}
+                </Form.Label>
+                <br />
+              </>
+            ) : null}
+
             <Button type="submit" className="mt-3">
               Sign Up
             </Button>
